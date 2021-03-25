@@ -10,5 +10,5 @@ package store;
  * @author syedk
  */
 public class book {
-    hello 
+    int hello;
 }
