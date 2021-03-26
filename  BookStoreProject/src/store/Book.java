@@ -1,18 +1,22 @@
 package store;
 
 public class Book {
-    private String name; 
+    private String bookName; 
     private double price; 
     
-    public void setName(){
+    public void setName(String bookName){
+        this.bookName = bookName;
     }
     
-    public void getName(){
+    public String getName(){
+        return bookName;
     }
     
-    public void setPrice(){
+    public void setPrice(double price){
+        this.price = price;
     }
     
-    public void getPrice(){
+    public double getPrice(){
+        return price;
     }
 }
