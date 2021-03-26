@@ -4,6 +4,7 @@ public class Owner {
     
     private int point; 
     private String status; 
+    private String userName; 
     
     public void setPoint(){
     }
@@ -24,5 +25,11 @@ public class Owner {
     }
    
     public void changeStatus(){
+    }
+    
+    public void setUserName(){
+    }
+    
+    public void getUserName(){
     }
 }
