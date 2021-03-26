@@ -46,4 +46,7 @@ public class Owner {
    
     public void changeStatus(){
     }
+    
+    public static void main(String args[]){
+    }
 }
