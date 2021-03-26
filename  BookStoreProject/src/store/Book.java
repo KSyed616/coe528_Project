@@ -1,28 +1,18 @@
 package store;
 
 public class Book {
+    private String name; 
+    private double price; 
     
-    private int point; 
-    private String status;
-    
-    public void setPoint(int point){ 
+    public void setName(){
     }
     
-    public void getPoint(int l){ 
+    public void getName(){
     }
     
-    public void removeBooks(){ 
+    public void setPrice(){
     }
     
-    public void addBooks(){ 
+    public void getPrice(){
     }
-    
-    public void addCust(){ 
-    }
-    
-    public void removeCust(){ 
-    }
-    
-    public void changeStatus(){ 
-    }   
 }
