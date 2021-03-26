@@ -8,10 +8,28 @@ public class Owner {
     private String userName; 
     private String password;
     
-    public void setPoint(){
+     public void setUserName(String userName){
+         this.userName = userName;
     }
     
-    public void getPoint(){
+    public String getUserName(){
+        return userName;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
+    }
+    
+    public String getPassword(){
+        return password;
+    }
+    
+    public void setPoint(int point){
+        this.point = point;
+    }
+    
+    public int getPoint(){
+        return point;
     }
     
     public void removeBooks(){
@@ -27,17 +45,5 @@ public class Owner {
     }
    
     public void changeStatus(){
-    }
-    
-    public void setUserName(){
-    }
-    
-    public void getUserName(){
-    }
-    
-    public void setPassword(){
-    }
-    
-    public void getPassword(){
     }
 }
