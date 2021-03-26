@@ -4,7 +4,9 @@ public class Owner {
     
     private int point; 
     private String status; 
+    
     private String userName; 
+    private String password;
     
     public void setPoint(){
     }
@@ -31,5 +33,11 @@ public class Owner {
     }
     
     public void getUserName(){
+    }
+    
+    public void setPassword(){
+    }
+    
+    public void getPassword(){
     }
 }
