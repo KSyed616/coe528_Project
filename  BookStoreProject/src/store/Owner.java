@@ -7,6 +7,9 @@ public class Owner{
     private int point; 
     private String status; 
     
+    private String data = "Name Of The Wind 50\n"
+            + "The Way Of Kings 45";
+
     private String userName; 
     private String password;
     
@@ -18,7 +21,7 @@ public class Owner{
 
     public Owner() throws IOException {
         this.out = new FileReader("Book.txt");
-        this.in = new FileWriter("Book.txt");
+        this.in = new FileWriter("Book.txt", true);
     }
     
     public void setUserName(String userName){
@@ -51,7 +54,8 @@ public class Owner{
     
     public void addBooks() throws IOException{
         if(read.readLine() == null){
-        }   
+            write.write(data);  
+        }
     }
     
     public void addCust(){
