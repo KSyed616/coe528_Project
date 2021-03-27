@@ -1,6 +1,8 @@
 package store;
 
-public class Owner {
+import java.io.*;
+
+public class Owner{
     
     private int point; 
     private String status; 
@@ -8,7 +10,18 @@ public class Owner {
     private String userName; 
     private String password;
     
-     public void setUserName(String userName){
+    FileReader out; 
+    BufferedReader read = new BufferedReader(out);
+    
+    FileWriter in; 
+    BufferedWriter write = new BufferedWriter(in);
+
+    public Owner() throws IOException {
+        this.out = new FileReader("Book.txt");
+        this.in = new FileWriter("Book.txt");
+    }
+    
+    public void setUserName(String userName){
          this.userName = userName;
     }
     
@@ -31,11 +44,14 @@ public class Owner {
     public int getPoint(){
         return point;
     }
-    
+
     public void removeBooks(){
+    
     }
     
-    public void addBooks(){
+    public void addBooks() throws IOException{
+        if(read.readLine() == null){
+        }   
     }
     
     public void addCust(){
@@ -48,8 +64,6 @@ public class Owner {
     }
     
     public static void main(String args[]){
-        
-        
-        
+    
     }
 }
