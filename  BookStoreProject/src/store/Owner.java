@@ -19,7 +19,9 @@ public class Owner{
     
     FileWriter in; 
     BufferedWriter write = new BufferedWriter(in);
-
+    
+    Scanner input = new Scanner(System.in);
+    
     //constructor for Owner. 
     public Owner() throws IOException {
         this.out = new FileReader("Book.txt");
@@ -65,10 +67,9 @@ public class Owner{
         if(read.readLine() == null){
             write.write(data);  
         }        
-        Scanner bookInfo = new Scanner(System.in);
         String name;
         System.out.println("What is the name of the book?"); 
-        name = bookInfo.nextLine(); 
+        name = input.nextLine(); 
     }
     
     //method to add customers. 
