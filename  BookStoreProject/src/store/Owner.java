@@ -1,6 +1,7 @@
 package store;
 
 import java.io.*;
+import java.util.Scanner; 
 
 public class Owner{
     
@@ -55,7 +56,11 @@ public class Owner{
     public void addBooks() throws IOException{
         if(read.readLine() == null){
             write.write(data);  
-        }
+        }        
+        Scanner bookInfo = new Scanner(System.in);
+        String name;
+        System.out.println("What is the name of the book?"); 
+        name = bookInfo.nextLine(); 
     }
     
     public void addCust(){
@@ -68,6 +73,5 @@ public class Owner{
     }
     
     public static void main(String args[]){
-    
     }
 }
