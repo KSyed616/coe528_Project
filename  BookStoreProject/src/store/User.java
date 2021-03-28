@@ -1,6 +1,6 @@
 package store;
 
-//Everything in User extends off of LogIn
+//Everything in User extends off of LogIn.
 
 abstract class User{
     public abstract void owner_change(LogIn l);
