@@ -70,6 +70,10 @@ public class Owner{
         String name;
         System.out.println("What is the name of the book?"); 
         name = input.nextLine(); 
+        
+        double price; 
+        System.out.println("What is the price of the book?");
+        price = input.nextDouble();
     }
     
     //method to add customers. 
