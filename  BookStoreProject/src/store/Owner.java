@@ -75,9 +75,8 @@ public class Owner{
         System.out.println("What is the price of the book?");
         price = input.nextDouble();
         
-        Book b = new Book(name, price); 
-        
-        System.out.println(b);
+        Book b = new Book(name, price);   
+        in.write(""+b);         
     }
     
     //method to add customers. 
@@ -93,6 +92,6 @@ public class Owner{
     }
     
     //main method. 
-    public static void main(String args[]){
+    public static void main(String args[]){ 
     }
 }
