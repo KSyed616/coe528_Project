@@ -10,7 +10,6 @@ public class Owner extends User{
     private String status; 
     private String userName; 
     private String password;
-    private String filename;
     
     private String data = "Name Of The Wind,50\n"
             + "The Way Of Kings,45";    
@@ -61,9 +60,9 @@ public class Owner extends User{
     
     //method to add books. 
     public void addBooks(String name, double price) throws IOException{
-        file = new File(filename);
-        in = new FileWriter(filename, true);
-        out = new FileReader(filename);
+        file = new File("Book.txt");
+        in = new FileWriter("Book.txt", true);
+        out = new FileReader("Book.txt");
         write = new BufferedWriter(in);
         
         if(file.length() == 0){
@@ -102,7 +101,6 @@ public class Owner extends User{
     
     //main method. 
     public static void main(String args[]) throws IOException{ 
-        Owner o = new Owner("Book.txt");
-        o.addBooks("Name of the Wind", 90);
+        
     }  
 }
