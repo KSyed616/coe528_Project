@@ -10,22 +10,22 @@ public class Owner{
     private String status; 
     private String userName; 
     private String password;
+    private String filename;
     
     private String data = "Name Of The Wind 50\n"
             + "The Way Of Kings 45";
     
-    FileReader out; 
-    BufferedReader read = new BufferedReader(out);
     
+    File file;
+    FileReader out; 
     FileWriter in; 
-    BufferedWriter write = new BufferedWriter(in);
+    BufferedWriter write;
     
     Scanner input = new Scanner(System.in);
     
     //constructor for Owner. 
-    public Owner() throws IOException {
-        this.out = new FileReader("Book.txt");
-        this.in = new FileWriter("Book.txt", true);
+    public Owner(String filename){
+        this.filename = filename;
     }
     
     //method to set the username. 
@@ -64,19 +64,29 @@ public class Owner{
     
     //method to add books. 
     public void addBooks() throws IOException{
-        if(read.readLine() == null){
-            write.write(data);  
-        }        
+        file = new File(filename);
+        in = new FileWriter(filename, true);
+        out = new FileReader(filename);
+        write = new BufferedWriter(in);
+        
+        if(file.length() == 0){
+            write.write(data);
+            write.newLine();
+        }
         String name;
         System.out.println("What is the name of the book?"); 
         name = input.nextLine(); 
         
         double price; 
+        
         System.out.println("What is the price of the book?");
         price = input.nextDouble();
-        
+            
         Book b = new Book(name, price);   
-        in.write(""+b);         
+        write.write(""+b);  
+        write.newLine();
+        
+        write.close();
     }
     
     //method to add customers. 
@@ -92,6 +102,8 @@ public class Owner{
     }
     
     //main method. 
-    public static void main(String args[]){ 
+    public static void main(String args[]) throws IOException{ 
+        Owner o = new Owner("Book.txt");
+        o.addBooks();
     }
 }

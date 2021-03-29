@@ -31,4 +31,8 @@ public class Book {
     public double getPrice(){
         return price;
     }
+    
+    public String toString(){
+        return bookName+"\t"+price;
+    }
 }
