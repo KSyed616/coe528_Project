@@ -109,8 +109,13 @@ public class OwnerFX extends Application {
             public void handle(ActionEvent event) {
                 name = bookName.getText();
                 price = Double.parseDouble(bookPrice.getText());
+                Owner o = new Owner();
+                try {
+                    o.addBooks(name, price);
+                } catch (IOException ex) {
+                    
+                }
                 bookTable.getItems().add(new Book(name, price));
-                
             }
         });
         
