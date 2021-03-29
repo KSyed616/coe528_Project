@@ -1,20 +1,23 @@
 package store;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import java.util.Scanner;
 
-public class LogIn{
+public class LogIn
+{
+    private String userName;
+    private String password;
+    private User u;
     
+    public void setOwner(){
+        u = new Owner("Book.txt");
+    }
+    public void setCustomer(){
+        u = new Customer(userName, password);
+    }
+    public void setState(User u){
+        this.u = u;
+    }
     public static void LogIn(String[] args){
-        
-        Scanner input = new Scanner (System.in);
-        
-        String userName = "admin";
-        String password = "admin";
         
         System.out.println("Username:");
         userName = input.nextLine();
@@ -33,4 +36,6 @@ public class LogIn{
         else
             System.out.println("The username and password are incorrect.");
     }
+    }
+
 }
