@@ -13,8 +13,7 @@ public class Owner extends User{
     private String filename;
     
     private String data = "Name Of The Wind,50\n"
-            + "The Way Of Kings,45";
-    
+            + "The Way Of Kings,45";    
     
     File file;
     FileReader out; 
@@ -72,11 +71,6 @@ public class Owner extends User{
             write.write(data);
             write.newLine();
         }
-        System.out.println("What is the name of the book?"); 
-        name = input.nextLine();  
-        
-        System.out.println("What is the price of the book?");
-        price = input.nextDouble();
             
         Book b = new Book(name, price);   
         write.write(""+b.getName()+","+b.getPrice());  
