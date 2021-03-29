@@ -74,6 +74,10 @@ public class Owner{
         double price; 
         System.out.println("What is the price of the book?");
         price = input.nextDouble();
+        
+        Book b = new Book(name, price); 
+        
+        System.out.println(b);
     }
     
     //method to add customers. 
