@@ -3,7 +3,7 @@ package store;
 import java.io.*;
 import java.util.Scanner; 
 
-public class Owner{
+public class Owner extends User{
     
     //instance variables for points and status. 
     private int point; 
@@ -12,8 +12,8 @@ public class Owner{
     private String password;
     private String filename;
     
-    private String data = "Name Of The Wind 50\n"
-            + "The Way Of Kings 45";
+    private String data = "Name Of The Wind,50\n"
+            + "The Way Of Kings,45";
     
     
     File file;
@@ -27,7 +27,6 @@ public class Owner{
     public Owner(String filename){
         this.filename = filename;
     }
-    
     //method to set the username. 
     public void setUserName(String userName){
          this.userName = userName;
@@ -83,7 +82,7 @@ public class Owner{
         price = input.nextDouble();
             
         Book b = new Book(name, price);   
-        write.write(""+b);  
+        write.write(""+b.getName()+","+b.getPrice());  
         write.newLine();
         
         write.close();
@@ -105,5 +104,15 @@ public class Owner{
     public static void main(String args[]) throws IOException{ 
         Owner o = new Owner("Book.txt");
         o.addBooks();
+    }
+
+    @Override
+    public void owner_change(LogIn l) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void customer_change(LogIn l) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
