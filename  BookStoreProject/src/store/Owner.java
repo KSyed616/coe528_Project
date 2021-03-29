@@ -97,12 +97,6 @@ public class Owner extends User{
     public void changeStatus(){
     }
     
-    //main method. 
-    public static void main(String args[]) throws IOException{ 
-        Owner o = new Owner("Book.txt");
-        o.addBooks("Name of the Wind", 90);
-    }
-
     @Override
     public void owner_change(LogIn l) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -112,4 +106,10 @@ public class Owner extends User{
     public void customer_change(LogIn l) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    //main method. 
+    public static void main(String args[]) throws IOException{ 
+        Owner o = new Owner("Book.txt");
+        o.addBooks("Name of the Wind", 90);
+    }  
 }
