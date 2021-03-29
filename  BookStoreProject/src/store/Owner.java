@@ -23,8 +23,7 @@ public class Owner extends User{
     Scanner input = new Scanner(System.in);
     
     //constructor for Owner. 
-    public Owner(String filename){
-        this.filename = filename;
+    public Owner(){
     }
     //method to set the username. 
     public void setUserName(String userName){
