@@ -27,7 +27,6 @@ public class LogIn{
             System.out.println("logged in!");
         else
             System.out.println("The username and password are incorrect.");
-        
         Owner LogIn = Owner(userName, password);
         if(LogIn.checkPassword())
             System.out.println("logged in!");
