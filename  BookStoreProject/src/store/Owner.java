@@ -100,7 +100,7 @@ public class Owner extends User{
     //main method. 
     public static void main(String args[]) throws IOException{ 
         Owner o = new Owner("Book.txt");
-        o.addBooks();
+        o.addBooks("Name of the Wind", 90);
     }
 
     @Override
