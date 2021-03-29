@@ -62,7 +62,7 @@ public class Owner extends User{
     }
     
     //method to add books. 
-    public void addBooks() throws IOException{
+    public void addBooks(String name, double price) throws IOException{
         file = new File(filename);
         in = new FileWriter(filename, true);
         out = new FileReader(filename);
@@ -72,11 +72,8 @@ public class Owner extends User{
             write.write(data);
             write.newLine();
         }
-        String name;
         System.out.println("What is the name of the book?"); 
-        name = input.nextLine(); 
-        
-        double price; 
+        name = input.nextLine();  
         
         System.out.println("What is the price of the book?");
         price = input.nextDouble();
