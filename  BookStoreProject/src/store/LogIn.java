@@ -9,7 +9,7 @@ public class LogIn
     private User u;
     
     public void setOwner(){
-        u = new Owner("Book.txt");
+        u = new Owner();
     }
     public void setCustomer(){
         u = new Customer(userName, password);
@@ -17,8 +17,7 @@ public class LogIn
     public void setState(User u){
         this.u = u;
     }
-    public static void LogIn(String[] args){
-        
+      /*  
         System.out.println("Username:");
         userName = input.nextLine();
         
@@ -36,6 +35,5 @@ public class LogIn
         else
             System.out.println("The username and password are incorrect.");
     }
-    }
-
+    }*/
 }
