@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package store;
 
 import java.io.*;
@@ -23,17 +18,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-/**
- *
- * @author syedk
- */
+
 public class OwnerFX extends Application {
     String name;
     double price;
     
     FileReader out;
     
-    Owner o = new Owner();
+    String userName = null;
+    String password = null; 
+    Owner o = new Owner(userName, password);
     
     @Override
     public void start(Stage primaryStage) {
