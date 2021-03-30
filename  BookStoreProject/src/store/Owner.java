@@ -67,12 +67,11 @@ public class Owner extends User{
         String data = "";
         String newLine;
         String replace = ""+name+","+price;
-        System.out.println(replace);
         while((thisLine = read.readLine()) != null){
             data += thisLine + "\r\n";
         }
         read.close();
-        newLine = data.replaceAll(name, "THIS IS A DELETED BOOK");
+        newLine = data.replaceAll(name, "DELETED");
         in = new FileWriter("Book.txt");
         in.write(newLine);
         in.close();

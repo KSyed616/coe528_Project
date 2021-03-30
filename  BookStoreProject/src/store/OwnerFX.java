@@ -148,7 +148,7 @@ public class OwnerFX extends Application {
                 lineSplit = line.split(",");
                 name = lineSplit[0];
                 price = Double.parseDouble(lineSplit[1]);
-                if(!name.equals("THIS IS A DELTED BOOK")){
+                if(!name.equals("DELETED")){
                     bookTable.getItems().add(new Book(name, price));
                 }
             }
