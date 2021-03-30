@@ -121,6 +121,11 @@ public class OwnerFX extends Application {
                 Book b1;
                 b1 = (Book)bookTable.getSelectionModel().getSelectedItem();
                 bookTable.getItems().removeAll(b1);
+                try {
+                    o.removeBooks(b1.getName(), b1.getPrice());
+                } catch (IOException ex) {
+                    Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
@@ -137,12 +142,15 @@ public class OwnerFX extends Application {
             BufferedReader read  = new BufferedReader(out);
             
             String line;
+            
             while((line  = read.readLine()) != null){
                 lineSplit = null;
                 lineSplit = line.split(",");
                 name = lineSplit[0];
                 price = Double.parseDouble(lineSplit[1]);
-                bookTable.getItems().add(new Book(name, price));
+                if(!name.equals("THIS IS A DELTED BOOK")){
+                    bookTable.getItems().add(new Book(name, price));
+                }
             }
         } catch (FileNotFoundException ex) {
                     

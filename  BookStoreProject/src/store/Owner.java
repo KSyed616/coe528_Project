@@ -60,22 +60,24 @@ public class Owner extends User{
     
     //method to remove books. 
     public void removeBooks(String name, double price) throws IOException{        
-          in = new FileWriter("Book.txt");
         out = new FileReader("Book.txt");
-        write = new BufferedWriter(in);
         read = new BufferedReader(out);
         
-        String thisLine = null;
-        String data = null;
+        String thisLine;
+        String data = "";
+        String newLine;
         String replace = ""+name+","+price;
-        while((thisLine = read.readLine()) != null){       
-            data+=thisLine;
+        System.out.println(replace);
+        while((thisLine = read.readLine()) != null){
+            data += thisLine + "\r\n";
         }
-        
-        String newData = data.replaceAll(replace, "kumail");
-        in.write(newData);
+        read.close();
+        newLine = data.replaceAll(name, "THIS IS A DELETED BOOK");
+        in = new FileWriter("Book.txt");
+        in.write(newLine);
         in.close();
-    }    
+        
+    }
     
     public void initializeBookStore() throws IOException{
         file = new File("Book.txt");
@@ -131,5 +133,6 @@ public class Owner extends User{
         
         Owner o = new Owner(userName, password);
         o.initializeBookStore();
+        o.removeBooks("Name Of The Wind", 50);
     }  
 }
