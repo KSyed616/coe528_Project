@@ -58,18 +58,25 @@ public class Owner extends User{
     public void removeBooks(){
     }
     
+    public void initializeBookStore() throws IOException{
+        file = new File("Book.txt");
+        in = new FileWriter("Book.txt", true);
+        write = new BufferedWriter(in);
+       
+        if(file.length() == 0){
+            write.write(data);
+            write.newLine();
+            write.close();
+        }
+    }
     //method to add books. 
     public void addBooks(String name, double price) throws IOException{
+        
         file = new File("Book.txt");
         in = new FileWriter("Book.txt", true);
         out = new FileReader("Book.txt");
         write = new BufferedWriter(in);
         
-        if(file.length() == 0){
-            write.write(data);
-            write.newLine();
-        }
-            
         Book b = new Book(name, price);   
         write.write(""+b.getName()+","+b.getPrice());  
         write.newLine();
@@ -101,6 +108,7 @@ public class Owner extends User{
     
     //main method. 
     public static void main(String args[]) throws IOException{ 
-        
+        Owner o = new Owner();
+        o.initializeBookStore();
     }  
 }

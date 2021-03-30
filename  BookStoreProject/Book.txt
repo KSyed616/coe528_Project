@@ -1,0 +1,3 @@
+Name Of The Wind,50
+The Way Of Kings,45
+Woohoo,12.0

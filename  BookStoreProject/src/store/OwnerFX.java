@@ -33,6 +33,8 @@ public class OwnerFX extends Application {
     
     FileReader out;
     
+    Owner o = new Owner();
+    
     @Override
     public void start(Stage primaryStage) {
         Pane root = new Pane();
@@ -50,6 +52,7 @@ public class OwnerFX extends Application {
             public void handle(ActionEvent event) {
                 root.getChildren().clear();
                 try {
+                    o.initializeBookStore();
                     BooksFX(primaryStage);
                 } catch (IOException ex) {
                     Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,7 +112,6 @@ public class OwnerFX extends Application {
             public void handle(ActionEvent event) {
                 name = bookName.getText();
                 price = Double.parseDouble(bookPrice.getText());
-                Owner o = new Owner();
                 try {
                     o.addBooks(name, price);
                 } catch (IOException ex) {
@@ -136,9 +138,10 @@ public class OwnerFX extends Application {
         });
         String [] lineSplit;
                 
-        try {
+        try{
             out = new FileReader("Book.txt");
             BufferedReader read  = new BufferedReader(out);
+            
             String line;
             while((line  = read.readLine()) != null){
                 lineSplit = null;
