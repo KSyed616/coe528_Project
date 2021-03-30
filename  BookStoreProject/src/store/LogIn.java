@@ -8,7 +8,7 @@ public class LogIn{
     private User u;
     
     public void setOwner(){
-        u = new Owner();
+        u = new Owner(userName, password);
     }
     
     public void setCustomer(){        

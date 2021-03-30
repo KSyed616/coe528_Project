@@ -23,8 +23,11 @@ public class Owner extends User{
     Scanner input = new Scanner(System.in);
     
     //constructor for Owner. 
-    public Owner(){
+    public Owner(String userName, String password){
+        this.userName = userName;
+        this.password = password; 
     }
+    
     //method to set the username. 
     public void setUserName(String userName){
          this.userName = userName;
@@ -97,6 +100,7 @@ public class Owner extends User{
     
     //method to add customers. 
     public void addCust(){
+        
     }
     
     //method to remove customers. 
@@ -119,7 +123,10 @@ public class Owner extends User{
     
     //main method. 
     public static void main(String args[]) throws IOException{ 
-        Owner o = new Owner();
+        String userName = null;
+        String password = null; 
+        
+        Owner o = new Owner(userName, password);
         o.initializeBookStore();
     }  
 }
