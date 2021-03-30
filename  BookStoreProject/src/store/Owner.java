@@ -18,6 +18,7 @@ public class Owner extends User{
     FileReader out; 
     FileWriter in; 
     BufferedWriter write;
+    BufferedReader read; 
     
     Scanner input = new Scanner(System.in);
     
@@ -55,8 +56,20 @@ public class Owner extends User{
     }
     
     //method to remove books. 
-    public void removeBooks(){
-    }
+    public void removeBooks(String name, double price) throws IOException{        
+        in = new FileWriter("Book.txt", true);
+        out = new FileReader("Book.txt");
+        write = new BufferedWriter(in);
+        read = new BufferedReader(out);
+        
+        String thisLine = null;
+        
+        while((thisLine = read.readLine()) != null){       
+            if(thisLine.equals(""+name+","+price)){
+                write.write("");
+            }
+        }    
+      }
     
     public void initializeBookStore() throws IOException{
         file = new File("Book.txt");
@@ -70,9 +83,7 @@ public class Owner extends User{
         }
     }
     //method to add books. 
-    public void addBooks(String name, double price) throws IOException{
-        
-        file = new File("Book.txt");
+    public void addBooks(String name, double price) throws IOException{       
         in = new FileWriter("Book.txt", true);
         out = new FileReader("Book.txt");
         write = new BufferedWriter(in);
