@@ -10,9 +10,11 @@ public class LogIn{
     public void setOwner(){
         u = new Owner();
     }
-    public void setCustomer(){
+    
+    public void setCustomer(){        
         u = new Customer(userName, password);
     }
+    
     public void setState(User u){
         this.u = u;
     }
