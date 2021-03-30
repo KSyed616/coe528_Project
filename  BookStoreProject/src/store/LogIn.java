@@ -2,8 +2,7 @@ package store;
 
 import java.util.Scanner;
 
-public class LogIn
-{
+public class LogIn{
     private String userName;
     private String password;
     private User u;
