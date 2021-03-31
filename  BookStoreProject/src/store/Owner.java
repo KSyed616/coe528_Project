@@ -103,12 +103,35 @@ public class Owner extends User{
     }
     
     //method to add customers. 
-    public void addCust(){
+    public void addCust(String userName, String password, String status, int point) throws IOException{
+        Customer c = new Customer(userName, password, status, point);   
+        in = new FileWriter("Customer.txt", true);
+        out = new FileReader("Custmer.txt");
+        write = new BufferedWriter(in);
         
+        write.write(""+c.getUserName()+","+c.getPassword()+","+c.getPoints()+","+c.getStatus());  
+        write.newLine();
+        
+        write.close();
     }
     
     //method to remove customers. 
-    public void removeCust(){
+    public void removeCust(String userName, String password, String status, int point) throws IOException{
+
+        out = new FileReader("Customer.txt");
+        read = new BufferedReader(out);
+        
+        String thisLine;
+        String data = "";
+        String newLine;
+        while((thisLine = read.readLine()) != null){
+            data += thisLine + "\r\n";
+        }
+        read.close();
+        newLine = data.replaceAll(userName, "DELETED");
+        in = new FileWriter("Customer.txt");
+        in.write(newLine);
+        in.close();
     }
     
     //method change status. 
