@@ -25,22 +25,28 @@ public class Customer extends User {
     BufferedReader read; 
     
     //Constructor for Customer class.
-    public Customer(String userName, String password){
+    public Customer(String userName, String password, String status, int point){
         this.userName = userName;
         this.password = password; 
+        this.status = status;
+        this.point = point;
     }
     
     //method to buy book
     public void Buy (Book b){    
     }
     
-    //method to duduct points. 
-    public void deductPoints (int point) {       
-        this.point = point;       
+    //method to update points. 
+    public void updatePoints (int point) {       
+        this.point = point;  
     }
     
     public String getUserName() {
         return userName;
+    }
+    
+    public String getPassword() {
+        return password;
     }
     
     public int getPoints() {
