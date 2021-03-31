@@ -17,6 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class OwnerFX extends Application {
@@ -26,7 +28,9 @@ public class OwnerFX extends Application {
     FileReader out;
     
     String userName = null;
-    String password = null; 
+    String password = null;
+    int point;
+    String status = null;
     Owner o = new Owner(userName, password);
     
     @Override
@@ -62,7 +66,11 @@ public class OwnerFX extends Application {
             @Override
             public void handle(ActionEvent event) {
                 root.getChildren().clear();
-                //Customer(primaryStage);
+                try {
+                    Customer(primaryStage);
+                } catch (IOException ex) {
+                    Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
         });
@@ -167,6 +175,75 @@ public class OwnerFX extends Application {
         Scene scene = new Scene(vbox);
         
         primaryStage.setScene(scene);
+    }
+    
+    private void Customer(Stage primaryStage) throws IOException{
+        Button add = new Button ("Add");    
+        Button delete = new Button ("Delete");
+        Button back = new Button ("Back");
+        
+        TextField user = new TextField();
+        user.setPromptText("Username");
+        
+        TextField pass = new TextField();
+        pass.setPromptText("Password");
+        
+        TableView <Customer> custTable = new TableView();
+        
+        TableColumn<Customer, String> column1 = new TableColumn<>("Username");
+        column1.setCellValueFactory(new PropertyValueFactory<>("userName"));
+
+        TableColumn<Customer, String> column2 = new TableColumn<>("Password");
+        column2.setCellValueFactory(new PropertyValueFactory<>("password"));
+        
+        TableColumn<Customer, Number> column3 = new TableColumn<>("Points");
+        column3.setCellValueFactory(new PropertyValueFactory<>("point"));
+        
+        custTable.getColumns().add(column1);
+        custTable.getColumns().add(column2);
+        custTable.getColumns().add(column3);
+        
+        add.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                userName = user.getText();
+                password = pass.getText();
+                point = 0;
+                status = "S";
+                try {
+                    o.addCust(userName, password, status, point);
+                } catch (IOException ex) {
+                    
+                }
+                custTable.getItems().add(new Customer(userName, password, status, point));
+            }
+        });
+        
+        /*delete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Book b1;
+                b1 = (Book)bookTable.getSelectionModel().getSelectedItem();
+                bookTable.getItems().removeAll(b1);
+                try {
+                    o.removeBooks(b1.getName(), b1.getPrice());
+                } catch (IOException ex) {
+                    Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }); */
+        
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(user, pass, add, delete, back);
+        
+        VBox vbox = new VBox(custTable);
+        vbox.getChildren().add(hbox);
+        
+        Scene scene = new Scene(vbox);
+        
+        primaryStage.setScene(scene);
+        
+        primaryStage.show();    
     }
     
     public static void main(String[] args) {
