@@ -8,7 +8,6 @@ public class Book {
     private String bookName; 
     private double price; 
     private CheckBox select;
-    int test;
     
     //constructor for Book. 
     public Book(String bookName, double price){
