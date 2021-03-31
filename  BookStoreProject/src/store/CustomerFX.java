@@ -12,37 +12,34 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
-import javafx.scene.text.TextAlignment;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.stage.Stage;
 
-public class CustomerFX extends Application{
+public class CustomerFX extends Application{        
     
     private String userName = "Jane";
     private String password;
+    private String status;
+    private int point;
     
     private String name;
     private double price;
     
     private double totalPrice = 0;
     
+    final ObservableList<Book> data = FXCollections.observableArrayList();
+    
     FileReader out;
     
-    Customer c = new Customer(userName, password);
+    Customer c = new Customer(userName, password, status, point);
     
     @Override
     public void start(Stage primaryStage) {
@@ -60,7 +57,7 @@ public class CustomerFX extends Application{
             c.initializeBookStore();
         } catch (IOException ex) {
             Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         
         TableView <Book> bookTable = new TableView();
         TableColumn<Book, String> column1 = new TableColumn<>("Book Name");
@@ -69,7 +66,7 @@ public class CustomerFX extends Application{
         TableColumn<Book, String> column2 = new TableColumn<>("Book Price");
         column2.setCellValueFactory(new PropertyValueFactory<>("price"));
         
-        TableColumn<Book, String> column3 = new TableColumn<>("Select");
+        TableColumn column3 = new TableColumn<>("Select");
         column3.setCellValueFactory(new PropertyValueFactory<>("select"));
         
         String [] lineSplit;
@@ -85,14 +82,13 @@ public class CustomerFX extends Application{
                 name = lineSplit[0];
                 price = Double.parseDouble(lineSplit[1]);
                 bookTable.getItems().add(new Book(name, price));
+                data.add(new Book(name, price));
             }
         } catch (FileNotFoundException ex) {
                     
         } catch (IOException ex) {
                     
         }
-        
-        
         bookTable.getColumns().add(column1);
         bookTable.getColumns().add(column2);
         bookTable.getColumns().add(column3);
@@ -105,21 +101,12 @@ public class CustomerFX extends Application{
         buy.setLayoutX(0);
         buy.setPrefWidth(75); 
         
-        //ObservableList<Book> data = FXCollections.observableArrayList(
-        
         buy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                
-                System.out.println("hello");
-                
-                Book b = new Book(name, price);
-                System.out.println(b);
-                
-                if (b.getSelect().isSelected()) { 
-                    totalPrice += b.getPrice(); 
-                }       
-                
+                for (Book bean : data){
+                    totalPrice = bean.getTotal();
+                } 
                 root.getChildren().clear();
                  try {
                     Cost(primaryStage);
