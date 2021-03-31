@@ -94,10 +94,13 @@ public class LogIn implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+        userName = userNameText.getText();
+        password = passwordText.getText();
         
         Customer LogIn = new Customer(userName, password);
-        if(LogIn.checkPassword())
-            System.out.println("logged in!");
+        
+        if(userName.equals("admin") && password.equals("admin"))
+            success.setText("logged in!");
         else
             System.out.println("The username and password are incorrect.");
        
