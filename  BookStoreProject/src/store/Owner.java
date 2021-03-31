@@ -103,12 +103,12 @@ public class Owner extends User{
     }
     
     //method to add customers. 
-    public void addCust(String userName, String password, String status, int point) throws IOException{
-        Customer c = new Customer(userName, password, status, point);   
+    public void addCust(String userName, String password, String status, int point) throws IOException{  
         in = new FileWriter("Customer.txt", true);
         out = new FileReader("Custmer.txt");
         write = new BufferedWriter(in);
         
+        Customer c = new Customer(userName, password, status, point); 
         write.write(""+c.getUserName()+","+c.getPassword()+","+c.getPoints()+","+c.getStatus());  
         write.newLine();
         
