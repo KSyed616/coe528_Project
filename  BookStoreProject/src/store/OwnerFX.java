@@ -28,12 +28,17 @@ public class OwnerFX extends Application {
     FileReader out;
     FileReader out2;
     
-    String userName = null;
-    String password = null;
+    String userName;
+    String password;
+    
     int Point = 0;
     String status = null;
     Owner o = new Owner(userName, password);
     
+    public OwnerFX(String userName, String password){
+        this.userName = userName;
+        this.password = password;
+    }
     @Override
     public void start(Stage primaryStage) {
         Pane root = new Pane();
@@ -79,6 +84,15 @@ public class OwnerFX extends Application {
         log.setLayoutY(150);
         log.setLayoutX(115);
         log.setPrefWidth(75);
+        
+        log.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                root.getChildren().clear();
+                LogInFX l = new LogInFX();
+                l.start(primaryStage);
+            }
+        });
         
         root.getChildren().add(books);
         root.getChildren().add(cust);

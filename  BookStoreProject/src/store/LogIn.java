@@ -13,7 +13,7 @@ public class LogIn{
     private User u;
     
     public void setOwner(){
-        //u = new Owner("Book.txt");
+        u = new Owner("admin", "admim");
     }
     public void setCustomer(){
         u = new Customer(userName, password, status, point);

@@ -25,10 +25,10 @@ import javafx.stage.Stage;
 
 public class CustomerFX extends Application{        
     
-    private String userName = "Jane";
     private String password;
     private String status;
     private int point;
+    private String userName;
     
     private String name;
     private double price;
@@ -39,11 +39,38 @@ public class CustomerFX extends Application{
     
     FileReader out;
     
-    Customer c = new Customer(userName, password, status, point);
+    Customer c = new Customer("Unnati", password, status, point);
+    
+    CustomerFX(String userName, String password){
+        this.userName = userName;
+        this.password = password;
+    }
     
     @Override
     public void start(Stage primaryStage) {
         Pane root = new Pane();
+        
+        String split[];
+        try{
+            out = new FileReader("Book.txt");
+            BufferedReader read  = new BufferedReader(out);
+            
+            String line;
+            
+            while((line  = read.readLine()) != null){
+                split = null;
+                split = line.split(",");
+                name = split[0];
+                price = Double.parseDouble(split[1]);
+                if(!name.equals("DELETED")){
+                    
+                }
+            }
+        } catch (FileNotFoundException ex) {
+                    
+        } catch (IOException ex) {
+                    
+        }
         
         Button buy = new Button ("Buy");    
         Button redeemPoints = new Button ("Redeem Points and Buy");
@@ -130,7 +157,6 @@ public class CustomerFX extends Application{
         root.getChildren().add(logout);
         root.getChildren().add(welcome);
         root.getChildren().add(bookTable);
-        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
         
         primaryStage.setScene(new Scene(root, 330, 250));
         primaryStage.show();
@@ -157,7 +183,6 @@ public class CustomerFX extends Application{
         root.getChildren().add(totalCost);
         root.getChildren().add(pAndS);
         root.getChildren().add(logout);
-        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
         
         primaryStage.setScene(new Scene(root, 330, 250));
         primaryStage.show();

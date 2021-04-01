@@ -162,5 +162,6 @@ public class Owner extends User{
         Owner o = new Owner(userName, password);
         o.initializeBookStore();
         o.removeBooks("Name Of The Wind", 50);
+        o.addCust("Unnati Vinayak", "Dumbass", "Gold", 100);
     }  
 }
