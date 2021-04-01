@@ -30,7 +30,7 @@ public class OwnerFX extends Application {
     
     String userName = null;
     String password = null;
-    int point = 0;
+    int Point = 0;
     String status = null;
     Owner o = new Owner(userName, password);
     
@@ -197,10 +197,10 @@ public class OwnerFX extends Application {
         TableColumn<Customer, String> column2 = new TableColumn<>("Password");
         column2.setCellValueFactory(new PropertyValueFactory<>("password"));
         
-        TableColumn<Customer, Number> column3 = new TableColumn<>("Points");
-        column3.setCellValueFactory(new PropertyValueFactory<>("point"));
+        TableColumn<Customer, Integer> column3 = new TableColumn<>("Points");
+        column3.setCellValueFactory(new PropertyValueFactory<>("Point"));
         
-        TableColumn<Customer, Number> column4 = new TableColumn<>("Status");
+        TableColumn<Customer, String> column4 = new TableColumn<>("Status");
         column4.setCellValueFactory(new PropertyValueFactory<>("status"));
         
         custTable.getColumns().add(column1);
@@ -213,14 +213,16 @@ public class OwnerFX extends Application {
             public void handle(ActionEvent event) {
                 userName = user.getText();
                 password = pass.getText();
-                point = 0;
+                Point = 0;
                 status = "S";
                 try {
-                    o.addCust(userName, password, status, point);
+                    o.addCust(userName, password, status, Point);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                custTable.getItems().add(new Customer(userName, password, status, point));
+                custTable.getItems().add(new Customer(userName, password, status, Point));
+                user.setText("");
+                pass.setText("");
             }
         });
         
@@ -256,10 +258,13 @@ public class OwnerFX extends Application {
             while((line  = read.readLine()) != null){
                 lineSplit = null;
                 lineSplit = line.split(",");
-                name = lineSplit[0];
-                price = Double.parseDouble(lineSplit[1]);
-                if(!name.equals("DELETED")){
-                    custTable.getItems().add(new Customer(userName, password, status, point));
+                userName = lineSplit[0];
+                password = lineSplit[1];
+                status=lineSplit[2];
+                Point=Integer.parseInt(lineSplit[3]);
+                
+                if(!userName.equals("DELETED")){
+                    custTable.getItems().add(new Customer(userName, password, status, Point));
                 }
             }
         } catch (FileNotFoundException ex) {
