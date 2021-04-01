@@ -4,7 +4,7 @@ package store;
 
 import javafx.stage.Stage;
 
-
 abstract class User{
+   
     public abstract void state_change(Stage primaryStage);
 }

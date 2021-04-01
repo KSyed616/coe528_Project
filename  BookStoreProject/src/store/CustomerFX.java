@@ -109,6 +109,22 @@ public class CustomerFX extends Application{
         } catch (IOException ex) {
                     
         }
+        
+         try{
+            out = new FileReader("Customer.txt");
+            BufferedReader read  = new BufferedReader(out);
+            
+            String line;
+            while((line  = read.readLine()) != null){
+                lineSplit = null;
+                lineSplit = line.split(",");
+                userName = lineSplit[0];
+                password = lineSplit[1];  
+            }
+        } catch (FileNotFoundException ex) {            
+        } catch (IOException ex) {            
+        }
+ 
         bookTable.getColumns().add(column1);
         bookTable.getColumns().add(column2);
         bookTable.getColumns().add(column3);

@@ -1,11 +1,6 @@
 package store;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*; 
 import javafx.stage.Stage;
 
 public class Customer extends User {
@@ -70,8 +65,33 @@ public class Customer extends User {
         }
     }
     //method to check if password is correct. 
-    boolean checkPassword() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    boolean checkCust(String user, String pass){
+        String [] lineSplit;
+                
+        try{
+            out = new FileReader("Customer.txt");
+            BufferedReader read  = new BufferedReader(out);
+            
+            String line;
+            
+            while((line  = read.readLine()) != null){
+                lineSplit = null;
+                lineSplit = line.split(",");
+                userName = lineSplit[0];
+                password = lineSplit[1];
+                
+                if(user == userName && pass == password){
+                    return true; 
+                }
+                else{
+                    return false; 
+                }
+            }
+        } catch (FileNotFoundException ex) {
+                    
+        } catch (IOException ex) {                    
+        }  
+        return false; 
     }
 
     @Override
