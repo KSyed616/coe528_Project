@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Customer extends User {
     
     //Instance variables.
-    private int point;
+    private int Point;
     private String userName;
     private String password;
     private String status;
@@ -25,11 +25,11 @@ public class Customer extends User {
     BufferedReader read; 
     
     //Constructor for Customer class.
-    public Customer(String userName, String password, String status, int point){
+    public Customer(String userName, String password, String status, int Point){
         this.userName = userName;
         this.password = password; 
         this.status = status;
-        this.point = point;
+        this.Point = Point;
     }
     
     //method to buy book
@@ -37,8 +37,8 @@ public class Customer extends User {
     }
     
     //method to update points. 
-    public void updatePoints (int point) {       
-        this.point = point;  
+    public void updatePoint (int Point) {       
+        this.Point = Point;  
     }
     
     public String getUserName() {
@@ -49,8 +49,8 @@ public class Customer extends User {
         return password;
     }
     
-    public int getPoints() {
-        return point;
+    public int getPoint() {
+        return Point;
     }
     
     public String getStatus () {
