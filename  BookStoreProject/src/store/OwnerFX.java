@@ -26,10 +26,11 @@ public class OwnerFX extends Application {
     double price;
     
     FileReader out;
+    FileReader out2;
     
     String userName = null;
     String password = null;
-    int point;
+    int point = 0;
     String status = null;
     Owner o = new Owner(userName, password);
     
@@ -199,9 +200,13 @@ public class OwnerFX extends Application {
         TableColumn<Customer, Number> column3 = new TableColumn<>("Points");
         column3.setCellValueFactory(new PropertyValueFactory<>("point"));
         
+        TableColumn<Customer, Number> column4 = new TableColumn<>("Status");
+        column4.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
         custTable.getColumns().add(column1);
         custTable.getColumns().add(column2);
         custTable.getColumns().add(column3);
+        custTable.getColumns().add(column4);
         
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -213,7 +218,7 @@ public class OwnerFX extends Application {
                 try {
                     o.addCust(userName, password, status, point);
                 } catch (IOException ex) {
-                    
+                    ex.printStackTrace();
                 }
                 custTable.getItems().add(new Customer(userName, password, status, point));
             }
@@ -232,6 +237,36 @@ public class OwnerFX extends Application {
                 }
             }
         }); */
+        
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                start(primaryStage);
+            }
+        });
+        
+        String [] lineSplit;
+                
+        try{
+            out2 = new FileReader("Customer.txt");
+            BufferedReader read  = new BufferedReader(out2);
+            
+            String line;
+            
+            while((line  = read.readLine()) != null){
+                lineSplit = null;
+                lineSplit = line.split(",");
+                name = lineSplit[0];
+                price = Double.parseDouble(lineSplit[1]);
+                if(!name.equals("DELETED")){
+                    custTable.getItems().add(new Customer(userName, password, status, point));
+                }
+            }
+        } catch (FileNotFoundException ex) {
+                    
+        } catch (IOException ex) {
+                    
+        }
         
         HBox hbox = new HBox();
         hbox.getChildren().addAll(user, pass, add, delete, back);
