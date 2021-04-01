@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Owner extends User{
     
     //instance variables for points and status. 
-    private int point; 
+    private int Point; 
     private String status; 
     private String userName; 
     private String password;
@@ -55,13 +55,13 @@ public class Owner extends User{
     }
     
     //method to set points. 
-    public void setPoint(int point){
-        this.point = point;
+    public void setPoint(int Point){
+        this.Point = Point;
     }
     
     //method to return the points. 
     public int getPoint(){
-        return point;
+        return Point;
     }
     
     //method to remove books. 
@@ -109,20 +109,20 @@ public class Owner extends User{
     }
     
     //method to add customers. 
-    public void addCust(String userName, String password, String status, int point) throws IOException{  
+    public void addCust(String userName, String password, String status, int Point) throws IOException{  
         in2 = new FileWriter("Customer.txt", true);
         out2 = new FileReader("Customer.txt");
         write2 = new BufferedWriter(in2);
         
-        Customer c = new Customer(userName, password, status, point); 
-        write2.write(""+c.getUserName()+","+c.getPassword()+","+c.getPoints()+","+c.getStatus());  
+        Customer c = new Customer(userName, password, status, Point); 
+        write2.write(""+c.getUserName()+","+c.getPassword()+","+c.getStatus()+","+c.getPoint());  
         write2.newLine();
         
         write2.close();
     }
     
     //method to remove customers. 
-    public void removeCust(String userName, String password, String status, int point) throws IOException{
+    public void removeCust(String userName, String password, String status, int Point) throws IOException{
 
         out2 = new FileReader("Customer.txt");
         read2 = new BufferedReader(out2);
