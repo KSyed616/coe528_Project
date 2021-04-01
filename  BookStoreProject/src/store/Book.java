@@ -1,9 +1,12 @@
 package store;
 
+import java.util.ArrayList;
 import javafx.scene.control.CheckBox;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Book {
     
@@ -13,28 +16,48 @@ public class Book {
     private CheckBox select;
     private static boolean checked;
     private static double total;
-    
+    private static ArrayList<String> checkedBooks = new ArrayList<String>();
+
+    private static ObservableList<Book> data2 = FXCollections.observableArrayList();
+
     //constructor for Book. 
     public Book(String bookName, double price){
         this.bookName = new SimpleStringProperty(bookName);
         this.price = new SimpleDoubleProperty(price);
         this.select = new CheckBox();
-        
+                   
         select.selectedProperty().addListener(
         (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
-         checked = select.isSelected();
-         if (checked == true) {
-            total += price;
-         } else {
-            total -= price;
-         }         
-      });
+            checked = select.isSelected();
+            if (checked == true) {
+               checkedBooks.add(bookName);
+               System.out.println(checkedBooks);
+               total += price;
+            } else {
+               total -= price;
+               checkedBooks.remove(bookName);
+               System.out.println(checkedBooks);
+            }  
+        });
     }
+    
+    /*public int getIndex() {
+        return index;
+    }  */
+    
+    public ObservableList<Book> getData () {
+        return data2;
+    }
+    
     public double getTotal() {
         return total;
     }
     
-    //method to set the book name. 
+    public ArrayList getCheckedBooks() {
+        return checkedBooks;
+    }
+    
+    //method to set the name. 
     public void setName(String bookName){
         this.bookName.set(bookName);
     }
