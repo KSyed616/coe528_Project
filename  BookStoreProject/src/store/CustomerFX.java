@@ -49,7 +49,7 @@ public class CustomerFX extends Application{
         Button redeemPoints = new Button ("Redeem Points and Buy");
         Button logout = new Button ("Logout");
         
-        Text welcome = new Text(30, 50, "Welcome " + c.getUserName() + ". You have " + c.getPoints() + " Points. Your Status is " + c.getStatus() +".");
+        Text welcome = new Text(30, 50, "Welcome " + c.getUserName() + ". You have " + c.getPoint() + " Points. Your Status is " + c.getStatus() +".");
         welcome.setFont(new Font(12));
         welcome.setY(20);
         
@@ -108,7 +108,7 @@ public class CustomerFX extends Application{
                     totalPrice = bean.getTotal();
                 } 
                 root.getChildren().clear();
-                 try {
+                try {
                     Cost(primaryStage);
                 } catch (IOException ex) {
                     Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,7 +146,7 @@ public class CustomerFX extends Application{
         totalCost.setFont(new Font(12));
         totalCost.setY(20);
         
-        Text pAndS = new Text(30, 50, "Points: " + c.getPoints() + ", Status: " + c.getStatus());
+        Text pAndS = new Text(30, 50, "Points: " + c.getPoint() + ", Status: " + c.getStatus());
         pAndS.setFont(new Font(12));
         pAndS.setY(40);
         
