@@ -2,6 +2,9 @@ package store;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -101,11 +104,10 @@ public class LogIn implements ActionListener{
         
         Customer LogIn = new Customer(userName, password, status, point);
         
-        if(userName.equals("admin") && password.equals("admin"))
-            success.setText("logged in!");
-        else
-            System.out.println("The username and password are incorrect.");
-       
+        if(userName.equals("admin") && password.equals("admin")) {
+            success.setText("logged in!");       
+        } else
+            System.out.println("The username and password are incorrect.");   
     }
 }
 
