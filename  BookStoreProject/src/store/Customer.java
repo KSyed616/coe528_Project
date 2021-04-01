@@ -57,17 +57,6 @@ public class Customer extends User {
         return status;
     }
 
-    public void initializeBookStore() throws IOException{
-        file = new File("Book.txt");
-        in = new FileWriter("Book.txt", true);
-        write = new BufferedWriter(in);
-       
-        if(file.length() == 0){
-            write.write(data);
-            write.newLine();
-            write.close();
-        }
-    }
     //method to check if password is correct. 
     boolean checkPassword() {
         throw new UnsupportedOperationException("Not supported yet."); 
