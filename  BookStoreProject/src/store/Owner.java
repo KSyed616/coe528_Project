@@ -20,6 +20,12 @@ public class Owner extends User{
     BufferedWriter write;
     BufferedReader read; 
     
+    File file2;
+    FileReader out2; 
+    FileWriter in2; 
+    BufferedWriter write2;
+    BufferedReader read2; 
+    
     Scanner input = new Scanner(System.in);
     
     //constructor for Owner. 
@@ -104,34 +110,34 @@ public class Owner extends User{
     
     //method to add customers. 
     public void addCust(String userName, String password, String status, int point) throws IOException{  
-        in = new FileWriter("Customer.txt", true);
-        out = new FileReader("Custmer.txt");
-        write = new BufferedWriter(in);
+        in2 = new FileWriter("Customer.txt", true);
+        out2 = new FileReader("Customer.txt");
+        write2 = new BufferedWriter(in2);
         
         Customer c = new Customer(userName, password, status, point); 
-        write.write(""+c.getUserName()+","+c.getPassword()+","+c.getPoints()+","+c.getStatus());  
-        write.newLine();
+        write2.write(""+c.getUserName()+","+c.getPassword()+","+c.getPoints()+","+c.getStatus());  
+        write2.newLine();
         
-        write.close();
+        write2.close();
     }
     
     //method to remove customers. 
     public void removeCust(String userName, String password, String status, int point) throws IOException{
 
-        out = new FileReader("Customer.txt");
-        read = new BufferedReader(out);
+        out2 = new FileReader("Customer.txt");
+        read2 = new BufferedReader(out2);
         
         String thisLine;
         String data = "";
         String newLine;
-        while((thisLine = read.readLine()) != null){
+        while((thisLine = read2.readLine()) != null){
             data += thisLine + "\r\n";
         }
-        read.close();
+        read2.close();
         newLine = data.replaceAll(userName, "DELETED");
-        in = new FileWriter("Customer.txt");
-        in.write(newLine);
-        in.close();
+        in2 = new FileWriter("Customer.txt");
+        in2.write(newLine);
+        in2.close();
     }
     
     //method change status. 
