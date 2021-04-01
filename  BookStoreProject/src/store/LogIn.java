@@ -12,8 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-
-
 public class LogIn implements ActionListener{
     private static JLabel userNameLabel;
     private static JTextField userNameText;
