@@ -2,7 +2,9 @@ package store;
 
 //Everything in User extends off of LogIn.
 
+import javafx.stage.Stage;
+
+
 abstract class User{
-    public abstract void owner_change(LogIn l);
-    public abstract void customer_change(LogIn l);
+    public abstract void state_change(Stage primaryStage);
 }

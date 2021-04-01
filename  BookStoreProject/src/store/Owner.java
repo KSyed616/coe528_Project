@@ -2,6 +2,7 @@ package store;
 
 import java.io.*;
 import java.util.Scanner; 
+import javafx.stage.Stage;
 
 public class Owner extends User{
     
@@ -145,13 +146,9 @@ public class Owner extends User{
     }
     
     @Override
-    public void owner_change(LogIn l) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    @Override
-    public void customer_change(LogIn l) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void state_change(Stage primaryStage) {
+        LogInFX l = new LogInFX();
+        l.start(primaryStage);
     }
     
     //main method. 

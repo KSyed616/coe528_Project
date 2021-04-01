@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javafx.stage.Stage;
 
 public class Customer extends User {
     
@@ -74,12 +75,8 @@ public class Customer extends User {
     }
 
     @Override
-    public void owner_change(LogIn l) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void customer_change(LogIn l) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void state_change(Stage primaryStage) {
+        LogInFX l = new LogInFX();
+        l.start(primaryStage);
     }
 }

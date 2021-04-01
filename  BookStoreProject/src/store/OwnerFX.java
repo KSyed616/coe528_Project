@@ -89,8 +89,7 @@ public class OwnerFX extends Application {
             @Override
             public void handle(ActionEvent event) {
                 root.getChildren().clear();
-                LogInFX l = new LogInFX();
-                l.start(primaryStage);
+                o.state_change(primaryStage);
             }
         });
         
@@ -221,6 +220,7 @@ public class OwnerFX extends Application {
         custTable.getColumns().add(column2);
         custTable.getColumns().add(column3);
         custTable.getColumns().add(column4);
+        custTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -240,19 +240,19 @@ public class OwnerFX extends Application {
             }
         });
         
-        /*delete.setOnAction(new EventHandler<ActionEvent>() {
+        delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Book b1;
-                b1 = (Book)bookTable.getSelectionModel().getSelectedItem();
-                bookTable.getItems().removeAll(b1);
+                Customer c1;
+                c1 = (Customer)custTable.getSelectionModel().getSelectedItem();
+                custTable.getItems().removeAll(c1);
                 try {
-                    o.removeBooks(b1.getName(), b1.getPrice());
+                    o.removeCust(c1.getUserName(), c1.getPassword(), c1.getStatus(), c1.getPoint());
                 } catch (IOException ex) {
                     Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }); */
+        });
         
         back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
