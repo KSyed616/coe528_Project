@@ -22,13 +22,15 @@ public class LogIn implements ActionListener{
     
     private String userName;
     private String password;
+    private String status;
+    private int point;
     private User u;
     
     public void setOwner(){
-        u = new Owner("Book.txt");
+        //u = new Owner("Book.txt");
     }
     public void setCustomer(){
-        u = new Customer(userName, password);
+        u = new Customer(userName, password, status, point);
     }
     public void setState(User u){
         this.u = u;
@@ -97,7 +99,7 @@ public class LogIn implements ActionListener{
         userName = userNameText.getText();
         password = passwordText.getText();
         
-        Customer LogIn = new Customer(userName, password);
+        Customer LogIn = new Customer(userName, password, status, point);
         
         if(userName.equals("admin") && password.equals("admin"))
             success.setText("logged in!");
