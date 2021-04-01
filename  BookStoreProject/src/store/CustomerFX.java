@@ -23,11 +23,9 @@ public class CustomerFX extends Application{
     private String password;
     private String status;
     private int point;
-    private String userName;
-    
+    private String userName;    
     private String name;
     private double price;
-    
     private double totalPrice = 0;
     
     final ObservableList<Book> data = FXCollections.observableArrayList();

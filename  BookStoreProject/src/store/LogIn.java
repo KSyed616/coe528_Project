@@ -2,7 +2,6 @@ package store;
 
 import java.io.*;
 
-
 public class LogIn{
     
     private String userName;

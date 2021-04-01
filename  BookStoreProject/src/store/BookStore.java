@@ -2,6 +2,7 @@ package store;
 
 public class BookStore{
     
-    public static void main(String args[]){       
+    public static void main(String args[]){ 
+        
     }   
 }

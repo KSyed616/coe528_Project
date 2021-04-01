@@ -34,12 +34,12 @@ public class Book {
         return total;
     }
     
-    //method to set the name. 
+    //method to set the book name. 
     public void setName(String bookName){
         this.bookName.set(bookName);
     }
     
-    //method to return the name. 
+    //method to return the book name. 
     public String getName(){
         return bookName.get();
     }
