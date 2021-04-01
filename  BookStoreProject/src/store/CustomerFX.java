@@ -28,7 +28,9 @@ public class CustomerFX extends Application{
     private double price;
     private double totalPrice = 0;
     
-    final ObservableList<Book> data = FXCollections.observableArrayList();
+    private ObservableList<Book> data = FXCollections.observableArrayList();
+    
+    final ObservableList<Book> delete = FXCollections.observableArrayList();
     
     FileReader out;
     
@@ -42,29 +44,7 @@ public class CustomerFX extends Application{
     @Override
     public void start(Stage primaryStage) {
         Pane root = new Pane();
-        
-        String split[];
-        try{
-            out = new FileReader("Book.txt");
-            BufferedReader read  = new BufferedReader(out);
-            
-            String line;
-            
-            while((line  = read.readLine()) != null){
-                split = null;
-                split = line.split(",");
-                name = split[0];
-                price = Double.parseDouble(split[1]);
-                if(!name.equals("DELETED")){
-                    
-                }
-            }
-        } catch (FileNotFoundException ex) {
-                    
-        } catch (IOException ex) {
-                    
-        }
-        
+      
         Button buy = new Button ("Buy");    
         Button redeemPoints = new Button ("Redeem Points and Buy");
         Button logout = new Button ("Logout");
@@ -101,8 +81,10 @@ public class CustomerFX extends Application{
                 lineSplit = line.split(",");
                 name = lineSplit[0];
                 price = Double.parseDouble(lineSplit[1]);
-                bookTable.getItems().add(new Book(name, price));
-                data.add(new Book(name, price));
+                if(!name.equals("DELETED")){
+                    bookTable.getItems().add(new Book(name, price));
+                    data.add(new Book(name, price));
+                }
             }
         } catch (FileNotFoundException ex) {
                     
@@ -110,21 +92,7 @@ public class CustomerFX extends Application{
                     
         }
         
-         try{
-            out = new FileReader("Customer.txt");
-            BufferedReader read  = new BufferedReader(out);
-            
-            String line;
-            while((line  = read.readLine()) != null){
-                lineSplit = null;
-                lineSplit = line.split(",");
-                userName = lineSplit[0];
-                password = lineSplit[1];  
-            }
-        } catch (FileNotFoundException ex) {            
-        } catch (IOException ex) {            
-        }
- 
+        
         bookTable.getColumns().add(column1);
         bookTable.getColumns().add(column2);
         bookTable.getColumns().add(column3);
@@ -138,6 +106,36 @@ public class CustomerFX extends Application{
         buy.setPrefWidth(75); 
         
         buy.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                
+                ObservableList<Book> dataRemove = FXCollections.observableArrayList();
+                
+                for (Book bean : data){
+                    totalPrice = bean.getTotal();
+                } 
+                
+                Book b1 = new Book(name, price);
+                     
+                for (int i = 0; i < b1.getCheckedBooks().size(); i++) {
+                    try {
+                        c.Buy(""+b1.getCheckedBooks().get(i));
+                    } catch (IOException ex) {
+                        Logger.getLogger(CustomerFX.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }
+                root.getChildren().clear();
+                try {
+                    Cost(primaryStage);
+                } catch (IOException ex) {
+                    Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }
+            
+        });
+        
+        redeemPoints.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 for (Book bean : data){
@@ -166,6 +164,10 @@ public class CustomerFX extends Application{
         root.getChildren().add(logout);
         root.getChildren().add(welcome);
         root.getChildren().add(bookTable);
+
+        //bookTable.getSelectionModel().select(Book(name,price));
+        
+        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
         
         primaryStage.setScene(new Scene(root, 330, 250));
         primaryStage.show();
