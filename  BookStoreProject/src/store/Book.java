@@ -27,8 +27,7 @@ public class Book {
             total += price;
          } else {
             total -= price;
-         }
-         
+         }         
       });
     }
     public double getTotal() {
