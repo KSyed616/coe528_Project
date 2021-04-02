@@ -59,7 +59,7 @@ public class LogInFX extends Application {
                     if(cust.checkCust(userName, password) == true){
                         CustomerFX c = new CustomerFX(userName, password);
                         c.makeCust(primaryStage, userName, password);
-                    }
+                    } 
                 }
             }
         });
