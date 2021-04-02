@@ -156,6 +156,12 @@ public class Owner extends User{
     
     //method change status. 
     public void changeStatus(){
+        if(Point < 1000){
+            status = "Silver";
+        }
+        if(Point >= 1000){
+            status = "Gold";
+        }  
     }
     
     @Override
