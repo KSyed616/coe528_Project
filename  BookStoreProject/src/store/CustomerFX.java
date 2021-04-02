@@ -148,16 +148,6 @@ public class CustomerFX extends Application{
                     totalPrice = bean.getTotal();
                 } 
                 totalPoints = totalPrice*10;
-                Book b1 = new Book(name, price);
-                     
-                for (int i = 0; i < b1.getCheckedBooks().size(); i++) {
-                    try {
-                        c.Buy(""+b1.getCheckedBooks().get(i));
-                    } catch (IOException ex) {
-                        Logger.getLogger(CustomerFX.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-                }
                 root.getChildren().clear();
                 try {
                     Cost(primaryStage);
@@ -198,8 +188,6 @@ public class CustomerFX extends Application{
         root.getChildren().add(logout);
         root.getChildren().add(welcome);
         root.getChildren().add(bookTable);
-
-        //bookTable.getSelectionModel().select(Book(name,price));
         
         root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
         
@@ -225,18 +213,6 @@ public class CustomerFX extends Application{
         logout.setLayoutX(65);
         logout.setPrefWidth(75);  
         
-        /*Button back = new Button ("Back");
-        back.setLayoutY(50);
-        back.setLayoutX(150);
-        back.setPrefWidth(75); 
-        back.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                start(primaryStage);
-            }
-        }); 
-        root.getChildren().add(back);*/
-        
         root.getChildren().add(totalCost);
         root.getChildren().add(pAndS);
         root.getChildren().add(logout);
@@ -250,6 +226,8 @@ public class CustomerFX extends Application{
         logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                userName = "";
+                System.out.println(userName);
                 root.getChildren().clear();
                 c.state_change(primaryStage);
             }
@@ -274,18 +252,6 @@ public class CustomerFX extends Application{
         logout.setLayoutY(50);
         logout.setLayoutX(65);
         logout.setPrefWidth(75);  
-        
-        /*Button back = new Button ("Back");
-        back.setLayoutY(50);
-        back.setLayoutX(150);
-        back.setPrefWidth(75); 
-        back.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                start(primaryStage);
-            }
-        }); 
-        root.getChildren().add(back);*/
         
         root.getChildren().add(totalCost);
         root.getChildren().add(pAndS);
