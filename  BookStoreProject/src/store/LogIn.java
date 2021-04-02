@@ -20,7 +20,7 @@ public class LogIn{
         return userName;
     }
     public void setPassword(String password){
-        this.password=password;
+        this.password = password;
     }
     public String getPassword(){
         return password;
