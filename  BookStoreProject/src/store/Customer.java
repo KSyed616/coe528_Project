@@ -28,6 +28,24 @@ public class Customer extends User {
         this.point = point;
     }
     
+    //method to buy book
+    public void Buy (String bookName) throws IOException{ 
+        out = new FileReader("Book.txt");
+        read = new BufferedReader(out);
+        
+        String thisLine;
+        String data = "";
+        String newLine;
+        while((thisLine = read.readLine()) != null){
+            data += thisLine + "\r\n";
+        }
+        read.close();
+        newLine = data.replaceAll(bookName, "DELETED");
+        in = new FileWriter("Book.txt");
+        in.write(newLine);
+        in.close();
+    }
+    
     //method to update points. 
     public void deductPoint (String user, double point) throws IOException {       
         this.point = this.point - point; 

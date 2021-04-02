@@ -90,17 +90,17 @@ public class Owner extends User{
         file = new File("Book.txt");
         in = new FileWriter("Book.txt", true);
         write = new BufferedWriter(in);
-       String [] lineSplit;
-       String user;
-       int num_of_lines = 0;
-       int num_of_del = 0;
-       
+        String [] lineSplit;
+        String user;
+        int num_of_lines = 0;
+        int num_of_del = 0;
+
         try{
             out = new FileReader("Book.txt");
             BufferedReader read  = new BufferedReader(out);
-            
+
             String line;
-            
+
             while((line  = read.readLine()) != null){
                 lineSplit = null;
                 lineSplit = line.split(",");
@@ -124,7 +124,31 @@ public class Owner extends User{
         in = new FileWriter("Customer.txt", true);
         write = new BufferedWriter(in);
        
-        if(file.length() == 0){
+        String [] lineSplit;
+        String user;
+        int num_of_lines = 0;
+        int num_of_del = 0;
+       
+        try{
+            out = new FileReader("Book.txt");
+            BufferedReader read  = new BufferedReader(out);
+            
+            String line;
+            
+            while((line  = read.readLine()) != null){
+                lineSplit = null;
+                lineSplit = line.split(",");
+                user = lineSplit[0];
+                num_of_lines++;
+                if(user.equals("DELETED")){
+                    num_of_del++;
+                }
+            }
+        } catch (FileNotFoundException ex) {         
+        } catch (IOException ex) {                    
+        }
+        System.out.println(num_of_lines+" "+num_of_del);
+        if(file.length() == 0 || num_of_lines-2 == num_of_del){
             write.write(data2);
             write.newLine();
             write.close();
@@ -190,5 +214,10 @@ public class Owner extends User{
     public void state_change(Stage primaryStage) {
         LogInFX l = new LogInFX();
         l.start(primaryStage);
+    }
+    
+    public static void main(String[] args) throws IOException {
+        Owner o = new Owner("ads", "ad");
+        o.initializeCust();
     }
 }
