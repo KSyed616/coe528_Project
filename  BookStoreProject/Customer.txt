@@ -1,6 +1,1 @@
-Unnati Vinayak,Dumbass,Gold,100
-DELETED,wooo,S,0
-Unnati Vinayak,Dumbass,Gold,100
-Unnati Vinayak,Dumbass,Gold,100
-Unnati Vinayak,Dumbass,Gold,100
-Unnati Vinayak,Dumbass,Gold,100
+Unnati,pass,G,-2100.0
