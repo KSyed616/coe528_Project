@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 public class Customer extends User {
     
     //Instance variables.
-    private int Point;
+    private double point;
     private String userName;
     private String password;
     private String status;
@@ -21,11 +21,11 @@ public class Customer extends User {
     BufferedReader read; 
     
     //Constructor for Customer class.
-    public Customer(String userName, String password, String status, int Point){
+    public Customer(String userName, String password, String status, double point){
         this.userName = userName;
         this.password = password; 
         this.status = status;
-        this.Point = Point;
+        this.point = point;
     }
     
     //method to buy book
@@ -47,20 +47,55 @@ public class Customer extends User {
     }
     
     //method to update points. 
-    public void updatePoint (int Point) {       
-        this.Point = Point;  
+    public double updatePoint (String user, double point) throws IOException {       
+        this.point = this.point - point; 
+        String lineSplit[];
+        out = new FileReader("Customer.txt");
+        BufferedReader read  = new BufferedReader(out);
+            
+        String line;
+        String data = "";
+            
+        while((line  = read.readLine()) != null){
+            lineSplit = null;
+            lineSplit = line.split(",");
+            userName = lineSplit[0];
+            password = lineSplit[1];
+            status = lineSplit[2];
+            if(user.equals(userName)){
+                data+=userName+","+password+","+status+","+this.point+"\r\n";
+                System.out.println(data);
+            }
+            else{
+                data+=line+"\r\n";
+            }
+        }
+        read.close();
+        in = new FileWriter("Customer.txt");
+        in.write(data);
+        in.close();
+        return this.point;
     }
     
     public String getUserName() {
         return userName;
     }
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
     
     public String getPassword() {
         return password;
     }
+    public void setPassword(String password){
+        this.password = password;
+    }
     
-    public int getPoint() {
-        return Point;
+    public void setPoint(double point){
+        this.point = point;
+    }
+    public double getPoint() {
+        return point;
     }
     
     public String getStatus () {
@@ -94,11 +129,8 @@ public class Customer extends User {
                 userName = lineSplit[0];
                 password = lineSplit[1];
                 
-                if(user == userName && pass == password){
+                if(user.equals(userName) && pass.equals(password)){
                     return true; 
-                }
-                else{
-                    return false; 
                 }
             }
         } catch (FileNotFoundException ex) {

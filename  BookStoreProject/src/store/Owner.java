@@ -15,6 +15,8 @@ public class Owner extends User{
     private String data = "Name Of The Wind,50\n"
             + "The Way Of Kings,45";    
     
+    private String data2 = "Unnati,pass,G,10000";
+    
     File file;
     FileReader out; 
     FileWriter in; 
@@ -96,6 +98,17 @@ public class Owner extends User{
             write.close();
         }
     }
+    public void initializeCust() throws IOException{
+        file = new File("Customer.txt");
+        in = new FileWriter("Customer.txt", true);
+        write = new BufferedWriter(in);
+       
+        if(file.length() == 0){
+            write.write(data2);
+            write.newLine();
+            write.close();
+        }
+    }
     //method to add books. 
     public void addBooks(String name, double price) throws IOException{       
         in = new FileWriter("Book.txt", true);
@@ -110,7 +123,7 @@ public class Owner extends User{
     }
     
     //method to add customers. 
-    public void addCust(String userName, String password, String status, int Point) throws IOException{  
+    public void addCust(String userName, String password, String status, double Point) throws IOException{  
         in2 = new FileWriter("Customer.txt", true);
         out2 = new FileReader("Customer.txt");
         write2 = new BufferedWriter(in2);
@@ -123,7 +136,7 @@ public class Owner extends User{
     }
     
     //method to remove customers. 
-    public void removeCust(String userName, String password, String status, int Point) throws IOException{
+    public void removeCust(String userName, String password, String status, double Point) throws IOException{
 
         out2 = new FileReader("Customer.txt");
         read2 = new BufferedReader(out2);
@@ -150,15 +163,4 @@ public class Owner extends User{
         LogInFX l = new LogInFX();
         l.start(primaryStage);
     }
-    
-    //main method. 
-    public static void main(String args[]) throws IOException{ 
-        String userName = null;
-        String password = null; 
-        
-        Owner o = new Owner(userName, password);
-        o.initializeBookStore();
-        o.removeBooks("Name Of The Wind", 50);
-        o.addCust("Unnati Vinayak", "Dumbass", "Gold", 100);
-    }  
 }

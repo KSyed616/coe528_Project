@@ -55,8 +55,11 @@ public class LogInFX extends Application {
                     o.start(primaryStage);
                 }
                 if(!userName.equalsIgnoreCase("admin")){
-                    CustomerFX c = new CustomerFX(userName, password);
-                    c.start(primaryStage);
+                    Customer cust = new Customer(userName, password, "Null", 0);
+                    if(cust.checkCust(userName, password) == true){
+                        CustomerFX c = new CustomerFX(userName, password);
+                        c.makeCust(primaryStage, userName, password);
+                    }
                 }
             }
         });

@@ -22,25 +22,53 @@ public class CustomerFX extends Application{
     
     private String password;
     private String status;
-    private int point;
+    private double point;
     private String userName;    
     private String name;
     private double price;
     private double totalPrice = 0;
+    private double totalPoints = 0;
     
     private ObservableList<Book> data = FXCollections.observableArrayList();
     
     FileReader out;
     
-    Customer c = new Customer("Unnati", password, status, point);
+    Customer c;
     
     CustomerFX(String userName, String password){
         this.userName = userName;
         this.password = password;
+        
     }
-    
+    public void makeCust(Stage primaryStage, String user, String pass){
+        String [] lineSplit;
+                
+        try{
+            out = new FileReader("Customer.txt");
+            BufferedReader read  = new BufferedReader(out);
+            
+            String line;
+            
+            while((line  = read.readLine()) != null){
+                lineSplit = null;
+                lineSplit = line.split(",");
+                userName = lineSplit[0];
+                password = lineSplit[1];
+                
+                if(user.equals(userName) && pass.equals(password)){
+                    status = lineSplit[2];
+                    point = Double.parseDouble(lineSplit[3]);
+                }
+            }
+        } catch (FileNotFoundException ex) {         
+        } catch (IOException ex) {                    
+        }
+        start(primaryStage);
+    }
     @Override
     public void start(Stage primaryStage) {
+            
+        c = new Customer(userName, password, status, point);
         Pane root = new Pane();
       
         Button buy = new Button ("Buy");    
@@ -67,7 +95,9 @@ public class CustomerFX extends Application{
         TableColumn column3 = new TableColumn<>("Select");
         column3.setCellValueFactory(new PropertyValueFactory<>("select"));
         
-        String [] lineSplit;
+        bookTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        
+        String [] lineSplit2;
                 
         try{
             out = new FileReader("Book.txt");
@@ -75,10 +105,10 @@ public class CustomerFX extends Application{
             
             String line;
             while((line  = read.readLine()) != null){
-                lineSplit = null;
-                lineSplit = line.split(",");
-                name = lineSplit[0];
-                price = Double.parseDouble(lineSplit[1]);
+                lineSplit2 = null;
+                lineSplit2 = line.split(",");
+                name = lineSplit2[0];
+                price = Double.parseDouble(lineSplit2[1]);
                 if(!name.equals("DELETED")){
                     bookTable.getItems().add(new Book(name, price));
                     data.add(new Book(name, price));
@@ -144,9 +174,10 @@ public class CustomerFX extends Application{
                 for (Book bean : data){
                     totalPrice = bean.getTotal();
                 } 
+                totalPoints = totalPrice * 100;
                 root.getChildren().clear();
                 try {
-                    Cost(primaryStage);
+                    PointCost(primaryStage);
                 } catch (IOException ex) {
                     Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -172,7 +203,7 @@ public class CustomerFX extends Application{
         
         root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
         
-        primaryStage.setScene(new Scene(root, 330, 250));
+        primaryStage.setScene(new Scene(root, 375, 250));
         primaryStage.show();
     }
     
@@ -223,7 +254,61 @@ public class CustomerFX extends Application{
                 c.state_change(primaryStage);
             }
         });       
-    } 
+    }
+    
+    private void PointCost(Stage primaryStage) throws IOException{
+        
+        Pane root = new Pane();
+        
+        Button logout = new Button ("Logout");
+        System.out.println(userName);
+        c.updatePoint(userName, totalPoints);
+        System.out.println(""+c.getPoint());
+        Text totalCost = new Text(30, 50, "Total points redeemed: " + totalPoints + ".");
+        
+        point = c.getPoint();
+        
+        totalCost.setFont(new Font(12));
+        totalCost.setY(20);
+        
+        Text pAndS = new Text(30, 50, "Points: " + c.getPoint() + ", Status: " + c.getStatus());
+        pAndS.setFont(new Font(12));
+        pAndS.setY(40);
+        
+        logout.setLayoutY(50);
+        logout.setLayoutX(65);
+        logout.setPrefWidth(75);  
+        
+        /*Button back = new Button ("Back");
+        back.setLayoutY(50);
+        back.setLayoutX(150);
+        back.setPrefWidth(75); 
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                start(primaryStage);
+            }
+        }); 
+        root.getChildren().add(back);*/
+        
+        root.getChildren().add(totalCost);
+        root.getChildren().add(pAndS);
+        root.getChildren().add(logout);
+        
+        
+        primaryStage.setScene(new Scene(root, 330, 250));
+        primaryStage.show();
+        
+        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
+        
+        logout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                root.getChildren().clear();
+                c.state_change(primaryStage);
+            }
+        });       
+    }
     
     public static void main(String[] args) {
         launch(args);
