@@ -29,7 +29,21 @@ public class Customer extends User {
     }
     
     //method to buy book
-    public void Buy (Book b){    
+    public void Buy (String bookName) throws IOException{ 
+        out = new FileReader("Book.txt");
+        read = new BufferedReader(out);
+        
+        String thisLine;
+        String data = "";
+        String newLine;
+        while((thisLine = read.readLine()) != null){
+            data += thisLine + "\r\n";
+        }
+        read.close();
+        newLine = data.replaceAll(bookName, "DELETED");
+        in = new FileWriter("Book.txt");
+        in.write(newLine);
+        in.close();
     }
     
     //method to update points. 
