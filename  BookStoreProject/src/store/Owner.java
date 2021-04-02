@@ -162,6 +162,9 @@ public class Owner extends User{
         if(Point >= 1000){
             status = "Gold";
         }  
+      
+        
+        
     }
     
     @Override
