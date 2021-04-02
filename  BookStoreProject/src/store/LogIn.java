@@ -26,5 +26,3 @@ public class LogIn{
         return password;
     }
 }
-
-    

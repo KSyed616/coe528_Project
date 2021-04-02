@@ -1,2 +1,3 @@
 Unnati,pass,G,0
-Kumail,new,S,500.0
+Kumail,new,S,0.0
+DELETED,unail,S,0.0
