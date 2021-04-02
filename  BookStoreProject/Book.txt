@@ -1,2 +1,2 @@
-Name Of The Wind,50
-The Way Of Kings,45
+DELETED,50
+DELETED,45

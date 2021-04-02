@@ -147,7 +147,7 @@ public class CustomerFX extends Application{
                 for (Book bean : data){
                     totalPrice = bean.getTotal();
                 } 
-                
+                totalPoints = totalPrice*10;
                 Book b1 = new Book(name, price);
                      
                 for (int i = 0; i < b1.getCheckedBooks().size(); i++) {
@@ -212,7 +212,7 @@ public class CustomerFX extends Application{
         Pane root = new Pane();
         
         Button logout = new Button ("Logout");
-        
+        c.addPoint(userName, totalPoints);
         Text totalCost = new Text(30, 50, "Total Cost: " + totalPrice + ".");
         totalCost.setFont(new Font(12));
         totalCost.setY(20);
@@ -261,12 +261,8 @@ public class CustomerFX extends Application{
         Pane root = new Pane();
         
         Button logout = new Button ("Logout");
-        System.out.println(userName);
-        c.updatePoint(userName, totalPoints);
-        System.out.println(""+c.getPoint());
+        c.deductPoint(userName, totalPoints);
         Text totalCost = new Text(30, 50, "Total points redeemed: " + totalPoints + ".");
-        
-        point = c.getPoint();
         
         totalCost.setFont(new Font(12));
         totalCost.setY(20);

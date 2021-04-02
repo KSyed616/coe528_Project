@@ -47,7 +47,7 @@ public class Customer extends User {
     }
     
     //method to update points. 
-    public double updatePoint (String user, double point) throws IOException {       
+    public void deductPoint (String user, double point) throws IOException {       
         this.point = this.point - point; 
         String lineSplit[];
         out = new FileReader("Customer.txt");
@@ -74,7 +74,35 @@ public class Customer extends User {
         in = new FileWriter("Customer.txt");
         in.write(data);
         in.close();
-        return this.point;
+    }
+    
+    public void addPoint (String user, double point) throws IOException {       
+        this.point = this.point + point; 
+        String lineSplit[];
+        out = new FileReader("Customer.txt");
+        BufferedReader read  = new BufferedReader(out);
+            
+        String line;
+        String data = "";
+            
+        while((line  = read.readLine()) != null){
+            lineSplit = null;
+            lineSplit = line.split(",");
+            userName = lineSplit[0];
+            password = lineSplit[1];
+            status = lineSplit[2];
+            if(user.equals(userName)){
+                data+=userName+","+password+","+status+","+this.point+"\r\n";
+                System.out.println(data);
+            }
+            else{
+                data+=line+"\r\n";
+            }
+        }
+        read.close();
+        in = new FileWriter("Customer.txt");
+        in.write(data);
+        in.close();
     }
     
     public String getUserName() {
