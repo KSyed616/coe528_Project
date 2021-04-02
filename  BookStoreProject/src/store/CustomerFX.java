@@ -30,8 +30,6 @@ public class CustomerFX extends Application{
     
     private ObservableList<Book> data = FXCollections.observableArrayList();
     
-    final ObservableList<Book> delete = FXCollections.observableArrayList();
-    
     FileReader out;
     
     Customer c = new Customer("Unnati", password, status, point);
@@ -115,10 +113,7 @@ public class CustomerFX extends Application{
         
         buy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                
-                ObservableList<Book> dataRemove = FXCollections.observableArrayList();
-                
+            public void handle(ActionEvent event) {             
                 for (Book bean : data){
                     totalPrice = bean.getTotal();
                 } 
@@ -186,7 +181,6 @@ public class CustomerFX extends Application{
         Pane root = new Pane();
         
         Button logout = new Button ("Logout");
-        Button back = new Button ("Back");
         
         Text totalCost = new Text(30, 50, "Total Cost: " + totalPrice + ".");
         totalCost.setFont(new Font(12));
@@ -200,14 +194,22 @@ public class CustomerFX extends Application{
         logout.setLayoutX(65);
         logout.setPrefWidth(75);  
         
+        /*Button back = new Button ("Back");
         back.setLayoutY(50);
         back.setLayoutX(150);
-        back.setPrefWidth(75);
+        back.setPrefWidth(75); 
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                start(primaryStage);
+            }
+        }); 
+        root.getChildren().add(back);*/
         
         root.getChildren().add(totalCost);
         root.getChildren().add(pAndS);
         root.getChildren().add(logout);
-        root.getChildren().add(back);
+        
         
         primaryStage.setScene(new Scene(root, 330, 250));
         primaryStage.show();
@@ -220,15 +222,7 @@ public class CustomerFX extends Application{
                 root.getChildren().clear();
                 c.state_change(primaryStage);
             }
-        });
-        
-        back.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                start(primaryStage);
-            }
-        });
-        
+        });       
     } 
     
     public static void main(String[] args) {
