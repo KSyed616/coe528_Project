@@ -155,18 +155,16 @@ public class Owner extends User{
     }
     
     //method change status. 
-    public void changeStatus(){
+    public String changeStatus(int Point){
         if(Point < 1000){
-            status = "Silver";
+            status = "S";
         }
         if(Point >= 1000){
-            status = "Gold";
-        }  
-      
-        
-        
+            status = "G";
+        } 
+        return status; 
     }
-    
+
     @Override
     public void state_change(Stage primaryStage) {
         LogInFX l = new LogInFX();
