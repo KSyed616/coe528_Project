@@ -15,7 +15,7 @@ public class Owner extends User{
     private String data = "Name Of The Wind,50\n"
             + "The Way Of Kings,45";    
     
-    private String data2 = "Unnati,pass,G,10000";
+    private String data2 = "Unnati,pass,Gold,10000";
     
     File file;
     FileReader out; 
@@ -75,7 +75,6 @@ public class Owner extends User{
         String thisLine;
         String data = "";
         String newLine;
-        String replace = ""+name+","+price;
         while((thisLine = read.readLine()) != null){
             data += thisLine + "\r\n";
         }
@@ -91,8 +90,30 @@ public class Owner extends User{
         file = new File("Book.txt");
         in = new FileWriter("Book.txt", true);
         write = new BufferedWriter(in);
+       String [] lineSplit;
+       String user;
+       int num_of_lines = 0;
+       int num_of_del = 0;
        
-        if(file.length() == 0){
+        try{
+            out = new FileReader("Book.txt");
+            BufferedReader read  = new BufferedReader(out);
+            
+            String line;
+            
+            while((line  = read.readLine()) != null){
+                lineSplit = null;
+                lineSplit = line.split(",");
+                user = lineSplit[0];
+                num_of_lines++;
+                if(user.equals("DELETED")){
+                    num_of_del++;
+                }
+            }
+        } catch (FileNotFoundException ex) {         
+        } catch (IOException ex) {                    
+        }
+        if(file.length() == 0 || num_of_lines == num_of_del){
             write.write(data);
             write.newLine();
             write.close();
