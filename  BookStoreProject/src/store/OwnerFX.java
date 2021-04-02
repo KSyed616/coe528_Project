@@ -3,7 +3,6 @@ package store;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
