@@ -260,50 +260,68 @@ public class CustomerFX extends Application{
         
         Pane root = new Pane();
         
-        Button logout = new Button ("Logout");
-        c.deductPoint(userName, totalPoints);
-        Text totalCost = new Text(30, 50, "Total points redeemed: " + totalPoints + ".");
-        
-        totalCost.setFont(new Font(12));
-        totalCost.setY(20);
-        
-        Text pAndS = new Text(30, 50, "Points: " + c.getPoint() + ", Status: " + c.getStatus());
-        pAndS.setFont(new Font(12));
-        pAndS.setY(40);
-        
-        logout.setLayoutY(50);
-        logout.setLayoutX(65);
-        logout.setPrefWidth(75);  
-        
-        /*Button back = new Button ("Back");
-        back.setLayoutY(50);
-        back.setLayoutX(150);
-        back.setPrefWidth(75); 
-        back.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                start(primaryStage);
-            }
-        }); 
-        root.getChildren().add(back);*/
-        
-        root.getChildren().add(totalCost);
-        root.getChildren().add(pAndS);
-        root.getChildren().add(logout);
-        
-        
-        primaryStage.setScene(new Scene(root, 330, 250));
-        primaryStage.show();
-        
-        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
-        
-        logout.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                root.getChildren().clear();
-                c.state_change(primaryStage);
-            }
-        });       
+        if(totalPoints<c.getPoint()){
+            Button logout = new Button ("Logout");
+            c.deductPoint(userName, totalPoints);
+            Text totalCost = new Text(30, 50, "Total points redeemed: " + totalPoints + ".");
+
+            totalCost.setFont(new Font(12));
+            totalCost.setY(20);
+
+            Text pAndS = new Text(30, 50, "Points: " + c.getPoint() + ", Status: " + c.getStatus());
+            pAndS.setFont(new Font(12));
+            pAndS.setY(40);
+
+            logout.setLayoutY(50);
+            logout.setLayoutX(65);
+            logout.setPrefWidth(75);  
+
+            root.getChildren().add(totalCost);
+            root.getChildren().add(pAndS);
+            root.getChildren().add(logout);
+
+
+            primaryStage.setScene(new Scene(root, 330, 250));
+            primaryStage.show();
+
+            root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
+
+            logout.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    root.getChildren().clear();
+                    c.state_change(primaryStage);
+                }
+            });       
+        }
+        else{
+            Button logout = new Button ("Logout");
+            Text noPoint = new Text(30, 50, "Not enough points to complete transaction");
+
+            noPoint.setFont(new Font(12));
+            noPoint.setY(20);
+
+            logout.setLayoutY(50);
+            logout.setLayoutX(65);
+            logout.setPrefWidth(75);  
+
+            root.getChildren().add(noPoint);
+            root.getChildren().add(logout);
+
+
+            primaryStage.setScene(new Scene(root, 330, 250));
+            primaryStage.show();
+
+            root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
+
+            logout.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    root.getChildren().clear();
+                    c.state_change(primaryStage);
+                }
+            });
+        }
     }
     
     public static void main(String[] args) {
