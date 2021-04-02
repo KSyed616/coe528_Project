@@ -1,1 +1,2 @@
 Unnati,pass,G,-2100.0
+Ali,password,S,-1450.0
