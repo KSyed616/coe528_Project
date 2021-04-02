@@ -1,9 +1,1 @@
-DELETED,pass,G,0
-DELETED,new,S,0.0
-DELETED,unail,S,0.0
-DELETED,pass,Gold,10000
-DELETED,pass,Gold,10000
-DELETED,pass,Gold,10000
-DELETED,pass,Gold,12850.0
-DELETED,pass,Gold,10000
-Unnati,pass,Gold,10000
+Unnati,pass,Gold,100.0
