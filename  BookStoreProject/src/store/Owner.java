@@ -12,10 +12,12 @@ public class Owner extends User{
     private String userName; 
     private String password;
     
+    //String of data to initilize books. 
     private String data = "Name Of The Wind,50\n"
             + "The Way Of Kings,45\n"
             + "The Wise Man's Fear,60";    
     
+    //String of data to initilize customer. 
     private String data2 = "Unnati,pass,Gold,10000";
     
     //Used for "Book.txt".
@@ -89,10 +91,14 @@ public class Owner extends User{
         in.close();   
     }
     
+    //Method to initilize books by default. 
     public void initializeBookStore() throws IOException{
+        //Creates "Book.txt" text file.
         file = new File("Book.txt");
+        //Adds/writes to the file. 
         in = new FileWriter("Book.txt", true);
         write = new BufferedWriter(in);
+        
         String [] lineSplit;
         String user;
         int num_of_lines = 0;

@@ -29,7 +29,7 @@ public class Book {
         select.selectedProperty().addListener(
         (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
             checked = select.isSelected();
-            if (checked == true) {
+            if (checked == true){
                checkedBooks.add(bookName);
                total += price;
             } else {
@@ -43,11 +43,12 @@ public class Book {
         return index;
     }  */
     
-    public ObservableList<Book> getData () {
+    public ObservableList<Book> getData(){
         return data2;
     }
     
-    public double getTotal() {
+    //method to get total price. 
+    public double getTotal(){
         return total;
     }
     
@@ -55,22 +56,22 @@ public class Book {
         return checkedBooks;
     }
     
-    //method to set the name. 
+    //method to set the bookName.  
     public void setName(String bookName){
         this.bookName.set(bookName);
     }
     
-    //method to return the book name. 
+    //method to return the bookName. 
     public String getName(){
         return bookName.get();
     }
     
-    //method to set the price. 
+    //method to set the book price. 
     public void setPrice(double price){
         this.price.set(price);
     }
     
-    //method to return the price. 
+    //method to return the book price. 
     public double getPrice(){
         return price.get();
     }

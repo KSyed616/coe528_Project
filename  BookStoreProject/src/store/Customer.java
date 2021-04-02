@@ -12,7 +12,8 @@ public class Customer extends User {
     private String status;
     
     private String data = "Name Of The Wind,50\n"
-            + "The Way Of Kings,45";   
+            + "The Way Of Kings,45\n"
+            + "The Wise Man's Fear,60";    
     
     File file;
     FileReader out; 
@@ -28,8 +29,10 @@ public class Customer extends User {
         this.point = point;
     }
     
-    //method to buy book
-    public void Buy (String bookName) throws IOException{ 
+    //method to buy book. 
+    public void Buy (String bookName) throws IOException{   
+        
+        //Reads the "Book.txt" file. 
         out = new FileReader("Book.txt");
         read = new BufferedReader(out);
         
@@ -46,7 +49,7 @@ public class Customer extends User {
         in.close();
     }
     
-    //method to update points. 
+    //method to deduct points. 
     public void deductPoint (String user, double point) throws IOException {       
         this.point = this.point - point; 
         String lineSplit[];
@@ -76,6 +79,7 @@ public class Customer extends User {
         in.close();
     }
     
+    //Method to add points. 
     public void addPoint (String user, double point) throws IOException {       
         this.point = this.point + point; 
         String lineSplit[];
@@ -105,33 +109,46 @@ public class Customer extends User {
         in.close();
     }
     
+    //method to get userName. 
     public String getUserName() {
         return userName;
     }
+    
+    //method to set userName.
     public void setUserName(String userName){
         this.userName = userName;
     }
     
+    //method to get password.
     public String getPassword() {
         return password;
     }
+    
+    //method to set password. 
     public void setPassword(String password){
         this.password = password;
     }
     
+    //method to set points. 
     public void setPoint(double point){
         this.point = point;
     }
+    
+    //method to get point. 
     public double getPoint() {
         return point;
     }
     
+    //method to get status. 
     public String getStatus () {
         return status;
     }
 
+    //method to initialize bookStore. 
     public void initializeBookStore() throws IOException{
+        //creates new file called "Book.txt". 
         file = new File("Book.txt");
+        //adds/writes into the file created. 
         in = new FileWriter("Book.txt", true);
         write = new BufferedWriter(in);
        
