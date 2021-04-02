@@ -105,6 +105,14 @@ public class CustomerFX extends Application{
         buy.setLayoutX(0);
         buy.setPrefWidth(75); 
         
+        logout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                root.getChildren().clear();
+                c.state_change(primaryStage);
+            }
+        });
+        
         buy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -178,6 +186,7 @@ public class CustomerFX extends Application{
         Pane root = new Pane();
         
         Button logout = new Button ("Logout");
+        Button back = new Button ("Back");
         
         Text totalCost = new Text(30, 50, "Total Cost: " + totalPrice + ".");
         totalCost.setFont(new Font(12));
@@ -188,15 +197,37 @@ public class CustomerFX extends Application{
         pAndS.setY(40);
         
         logout.setLayoutY(50);
-        logout.setLayoutX(85);
+        logout.setLayoutX(65);
         logout.setPrefWidth(75);  
+        
+        back.setLayoutY(50);
+        back.setLayoutX(150);
+        back.setPrefWidth(75);
         
         root.getChildren().add(totalCost);
         root.getChildren().add(pAndS);
         root.getChildren().add(logout);
+        root.getChildren().add(back);
         
         primaryStage.setScene(new Scene(root, 330, 250));
         primaryStage.show();
+        
+        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
+        
+        logout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                root.getChildren().clear();
+                c.state_change(primaryStage);
+            }
+        });
+        
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                start(primaryStage);
+            }
+        });
         
     } 
     
