@@ -31,12 +31,10 @@ public class Book {
             checked = select.isSelected();
             if (checked == true) {
                checkedBooks.add(bookName);
-               System.out.println(checkedBooks);
                total += price;
             } else {
                total -= price;
                checkedBooks.remove(bookName);
-               System.out.println(checkedBooks);
             }  
         });
     }
