@@ -31,7 +31,7 @@ public class OwnerFX extends Application {
     String userName;
     String password;
     
-    int Point = 0;
+    double Point = 0;
     String status = null;
     Owner o = new Owner(userName, password);
     
@@ -73,6 +73,7 @@ public class OwnerFX extends Application {
             public void handle(ActionEvent event) {
                 root.getChildren().clear();
                 try {
+                    o.initializeCust();
                     Customer(primaryStage);
                 } catch (IOException ex) {
                     Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,6 +123,8 @@ public class OwnerFX extends Application {
         
         bookTable.getColumns().add(column1);
         bookTable.getColumns().add(column2);
+        
+        bookTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -275,7 +278,7 @@ public class OwnerFX extends Application {
                 userName = lineSplit[0];
                 password = lineSplit[1];
                 status=lineSplit[2];
-                Point=Integer.parseInt(lineSplit[3]);
+                Point=Double.parseDouble(lineSplit[3]);
                 
                 if(!userName.equals("DELETED")){
                     custTable.getItems().add(new Customer(userName, password, status, Point));
