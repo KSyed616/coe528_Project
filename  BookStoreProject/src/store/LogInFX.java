@@ -11,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -38,7 +39,7 @@ public class LogInFX extends Application {
         Label pwd = new Label("Password: ");
         
         TextField userField = new TextField();
-        TextField pwdField = new TextField();
+        PasswordField pwdField = new PasswordField();
         
         logIn.setText("Login");
         logIn.setOnAction(new EventHandler<ActionEvent>() {
@@ -59,7 +60,7 @@ public class LogInFX extends Application {
                     if(cust.checkCust(userName, password) == true){
                         CustomerFX c = new CustomerFX(userName, password);
                         c.makeCust(primaryStage, userName, password);
-                    } 
+                    }
                 }
             }
         });

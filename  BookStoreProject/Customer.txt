@@ -1,2 +1,2 @@
-Unnati,pass,G,-2100.0
-Ali,password,S,-1450.0
+Unnati,pass,G,0
+Kumail,new,S,500.0
