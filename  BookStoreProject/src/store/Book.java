@@ -17,6 +17,7 @@ public class Book {
     private static boolean checked;
     private static double total;
     private static ArrayList<String> checkedBooks = new ArrayList<String>();
+    private static ArrayList<Double> checkedPrice = new ArrayList<Double>();
 
     private static ObservableList<Book> data2 = FXCollections.observableArrayList();
 
@@ -31,18 +32,16 @@ public class Book {
             checked = select.isSelected();
             if (checked == true){
                checkedBooks.add(bookName);
+               checkedPrice.add(price);
                total += price;
             } else {
                total -= price;
                checkedBooks.remove(bookName);
+               checkedPrice.remove(price);
             }  
         });
     }
-    
-    /*public int getIndex() {
-        return index;
-    }  */
-    
+
     public ObservableList<Book> getData(){
         return data2;
     }
@@ -54,6 +53,10 @@ public class Book {
     
     public ArrayList getCheckedBooks() {
         return checkedBooks;
+    }
+    
+    public ArrayList getCheckedPrice() {
+        return checkedPrice;
     }
     
     //method to set the bookName.  
