@@ -3,13 +3,19 @@ package store;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class LogInFX extends Application {
@@ -23,21 +29,20 @@ public class LogInFX extends Application {
     @Override
     public void start(Stage primaryStage) {
         GridPane root = new GridPane();
+        root.setAlignment(Pos.CENTER);
+        root.setHgap(10);
+        root.setVgap(10);
+        root.setPadding(new Insets(15, 25, 25, 25));
+        
         Scene scene = new Scene(root, 300, 250);
         
         Button logIn = new Button();
-        Button exitBtn = new Button("Exit");
-        exitBtn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                primaryStage.close();
-            }
-        });
+        
         Label user = new Label("Username: ");
         Label pwd = new Label("Password: ");
         
         TextField userField = new TextField();
+        
         PasswordField pwdField = new PasswordField();
         
         logIn.setText("Login");
@@ -64,12 +69,13 @@ public class LogInFX extends Application {
             }
         });
         
-        root.addRow(0, user, userField);
-        root.addRow(1, pwd, pwdField);
-        root.addRow(2, logIn);
-        exitBtn.setPrefWidth(46); 
-        root.addRow(3, exitBtn);
-        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
+        Text scenetitle = new Text("Welcome");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        
+        root.add(scenetitle, 0, 0, 1, 1);
+        root.addRow(1, user, userField);
+        root.addRow(2, pwd, pwdField);
+        root.addRow(3, logIn);
         
         primaryStage.setTitle("Login");
         primaryStage.setScene(scene);
