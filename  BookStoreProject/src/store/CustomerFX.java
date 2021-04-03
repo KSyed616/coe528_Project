@@ -127,11 +127,11 @@ public class CustomerFX extends Application{
         bookTable.getColumns().add(column3);
         
         bookTable.setLayoutY(30);
-        bookTable.setLayoutX(40);
+        bookTable.setLayoutX(65);
         bookTable.setPrefHeight(150);
         
         buy.setLayoutY(200);
-        buy.setLayoutX(0);
+        buy.setLayoutX(10);
         buy.setPrefWidth(75); 
         
         logout.setOnAction(new EventHandler<ActionEvent>() {
@@ -155,6 +155,7 @@ public class CustomerFX extends Application{
                 for (int i = 0; i < b1.getCheckedBooks().size(); i++) {
                     try {
                         c.Buy(""+b1.getCheckedBooks().get(i));
+                        totalPrice = 0;
                     } catch (IOException ex) {
                         Logger.getLogger(CustomerFX.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -165,6 +166,7 @@ public class CustomerFX extends Application{
                 root.getChildren().clear();
                 try {
                     Cost(primaryStage);
+                    totalPrice = 0;
                 } catch (IOException ex) {
                     Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
                 } 
@@ -188,11 +190,11 @@ public class CustomerFX extends Application{
                     } catch (IOException ex) {
                         Logger.getLogger(CustomerFX.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
                 }
                 root.getChildren().clear();
                 try {
                     PointCost(primaryStage);
+                    totalPrice = 0;
                 } catch (IOException ex) {
                     Logger.getLogger(OwnerFX.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -201,11 +203,11 @@ public class CustomerFX extends Application{
         });
         
         redeemPoints.setLayoutY(200);
-        redeemPoints.setLayoutX(85);
+        redeemPoints.setLayoutX(110);
         redeemPoints.setPrefWidth(160);    
         
         logout.setLayoutY(200);
-        logout.setLayoutX(255);
+        logout.setLayoutX(290);
         logout.setPrefWidth(75);  
         
         root.getChildren().add(buy);
@@ -213,10 +215,6 @@ public class CustomerFX extends Application{
         root.getChildren().add(logout);
         root.getChildren().add(welcome);
         root.getChildren().add(bookTable);
-
-        //bookTable.getSelectionModel().select(Book(name,price));
-        
-        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
         
         primaryStage.setScene(new Scene(root, 375, 250));
         primaryStage.show();
@@ -232,7 +230,14 @@ public class CustomerFX extends Application{
         Text totalCost = new Text(30, 50, "Total Cost: " + totalPrice + ".");
         totalCost.setFont(new Font(12));
         totalCost.setY(20);
+        System.out.println(totalPoints);
         
+        if(c.getPoint()>=1000){
+            c.setStatus("Gold");
+        }
+        else{
+            c.setStatus("Silver");
+        }
         Text pAndS = new Text(30, 50, "Points: " + c.getPoint() + ", Status: " + c.getStatus());
         pAndS.setFont(new Font(12));
         pAndS.setY(40);
@@ -249,12 +254,11 @@ public class CustomerFX extends Application{
         primaryStage.setScene(new Scene(root, 330, 250));
         primaryStage.show();
         
-        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
-        
         logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 root.getChildren().clear();
+                totalPoints = 0;
                 c.state_change(primaryStage);
             }
         });       
@@ -266,14 +270,14 @@ public class CustomerFX extends Application{
         System.out.println(totalPoints +" "+c.getPoint());
         Book b1 = new Book(name, price);
         System.out.println(b1.getCheckedBooks());
-        if(totalPoints<c.getPoint()){
+        
+        if(totalPoints<=c.getPoint()){
             Button logout = new Button ("Logout");
             c.deductPoint(userName, totalPoints);
             Text totalCost = new Text(30, 50, "Total points redeemed: " + totalPoints + ".");
-
+            
             totalCost.setFont(new Font(12));
             totalCost.setY(20);
-
             Text pAndS = new Text(30, 50, "Points: " + c.getPoint() + ", Status: " + c.getStatus());
             pAndS.setFont(new Font(12));
             pAndS.setY(40);
@@ -290,18 +294,19 @@ public class CustomerFX extends Application{
             primaryStage.setScene(new Scene(root, 330, 250));
             primaryStage.show();
 
-            root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
-
             logout.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     root.getChildren().clear();
+                    totalPoints = 0;
                     c.state_change(primaryStage);
+                    
                 }
             });       
         }
         //If points are not enough, adds the bought book back into the store.
         else{
+            System.out.println(totalPoints);
             Book b2 = new Book(name, price);
             
             FileWriter in; 
@@ -340,8 +345,6 @@ public class CustomerFX extends Application{
 
             primaryStage.setScene(new Scene(root, 330, 250));
             primaryStage.show();
-
-            root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
 
             logout.setOnAction(new EventHandler<ActionEvent>() {
                 @Override

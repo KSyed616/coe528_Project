@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -76,7 +77,9 @@ public class LogInFX extends Application {
         root.addRow(1, user, userField);
         root.addRow(2, pwd, pwdField);
         root.addRow(3, logIn);
+        Image book = new Image("Store/Icon.jpeg");
         
+        primaryStage.getIcons().add(book);
         primaryStage.setTitle("Login");
         primaryStage.setScene(scene);
         primaryStage.show();

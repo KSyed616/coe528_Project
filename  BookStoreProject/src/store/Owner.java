@@ -175,13 +175,13 @@ public class Owner extends User{
     }
     
     //method change status. 
-    public String changeStatus(int Point){
+    public String changeStatus(double Point){
         if(Point < 1000){
             status = "Silver";
         }
         if(Point >= 1000){
             status = "Gold";
-        } 
+        }
         return status; 
     }
 

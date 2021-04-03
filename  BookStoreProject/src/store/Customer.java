@@ -52,6 +52,7 @@ public class Customer extends User {
     //method to deduct points. 
     public void deductPoint (String user, double point) throws IOException {       
         this.point = this.point - point; 
+        Owner o  = new Owner(user, password);
         String lineSplit[];
         out = new FileReader("Customer.txt");
         BufferedReader read  = new BufferedReader(out);
@@ -59,12 +60,13 @@ public class Customer extends User {
         String line;
         String data = "";
             
-        while((line  = read.readLine()) != null){
+        while((line = read.readLine()) != null){
             lineSplit = null;
             lineSplit = line.split(",");
             userName = lineSplit[0];
             password = lineSplit[1];
-            status = lineSplit[2];
+            status = o.changeStatus(this.point);
+            
             if(user.equals(userName)){
                 data+=userName+","+password+","+status+","+this.point+"\r\n";
                 System.out.println(data);
@@ -82,6 +84,7 @@ public class Customer extends User {
     //Method to add points. 
     public void addPoint (String user, double point) throws IOException {       
         this.point = this.point + point; 
+        Owner o  = new Owner(user, password);
         String lineSplit[];
         out = new FileReader("Customer.txt");
         BufferedReader read  = new BufferedReader(out);
@@ -94,7 +97,8 @@ public class Customer extends User {
             lineSplit = line.split(",");
             userName = lineSplit[0];
             password = lineSplit[1];
-            status = lineSplit[2];
+            status = o.changeStatus(this.point);
+            
             if(user.equals(userName)){
                 data+=userName+","+password+","+status+","+this.point+"\r\n";
                 System.out.println(data);
@@ -142,6 +146,9 @@ public class Customer extends User {
     //method to get status. 
     public String getStatus () {
         return status;
+    }
+    public void setStatus(String status){
+        this.status = status;
     }
 
     //method to initialize bookStore. 

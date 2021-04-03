@@ -12,6 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -46,9 +48,16 @@ public class OwnerFX extends Application {
         Button cust = new Button("Customers");
         Button log = new Button("Logout");
         
+        Image book = new Image("Store/book.png");
+        ImageView view1  = new ImageView(book);
+        
+        view1.setFitHeight(20);
+        view1.setPreserveRatio(true);
+        
         books.setLayoutY(50);
-        books.setLayoutX(115);
-        books.setPrefWidth(75);
+        books.setLayoutX(100);
+        books.setPrefWidth(100);
+        books.setGraphic(view1);
         
         books.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -63,9 +72,17 @@ public class OwnerFX extends Application {
             } 
         });
         
+                
+        Image custImg = new Image("Store/customer.png");
+        ImageView view2  = new ImageView(custImg);
+        
+        view2.setFitHeight(20);
+        view2.setPreserveRatio(true);
+        
         cust.setLayoutY(100);
-        cust.setLayoutX(115);
-        cust.setPrefWidth(75);
+        cust.setLayoutX(100);
+        cust.setPrefWidth(100);
+        cust.setGraphic(view2);
         
         cust.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -81,9 +98,16 @@ public class OwnerFX extends Application {
             
         });
         
+        Image logImg = new Image("Store/log.png");
+        ImageView view3  = new ImageView(logImg);
+        
+        view3.setFitHeight(20);
+        view3.setPreserveRatio(true);
+        
         log.setLayoutY(150);
-        log.setLayoutX(115);
-        log.setPrefWidth(75);
+        log.setLayoutX(100);
+        log.setPrefWidth(100);
+        log.setGraphic(view3);
         
         log.setOnAction(new EventHandler<ActionEvent>() {
             @Override
