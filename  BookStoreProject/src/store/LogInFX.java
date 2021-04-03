@@ -22,10 +22,18 @@ public class LogInFX extends Application {
     }
     @Override
     public void start(Stage primaryStage) {
-       GridPane root = new GridPane();
+        GridPane root = new GridPane();
         Scene scene = new Scene(root, 300, 250);
         
         Button logIn = new Button();
+        Button exitBtn = new Button("Exit");
+        exitBtn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.close();
+            }
+        });
         Label user = new Label("Username: ");
         Label pwd = new Label("Password: ");
         
@@ -59,6 +67,8 @@ public class LogInFX extends Application {
         root.addRow(0, user, userField);
         root.addRow(1, pwd, pwdField);
         root.addRow(2, logIn);
+        exitBtn.setPrefWidth(46); 
+        root.addRow(3, exitBtn);
         root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
         
         primaryStage.setTitle("Login");
