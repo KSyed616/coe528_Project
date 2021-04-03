@@ -99,30 +99,7 @@ public class Owner extends User{
         in = new FileWriter("Book.txt", true);
         write = new BufferedWriter(in);
         
-        String [] lineSplit;
-        String user;
-        int num_of_lines = 0;
-        int num_of_del = 0;
-
-        try{
-            out = new FileReader("Book.txt");
-            BufferedReader read  = new BufferedReader(out); 
-            String line;
-
-            while((line  = read.readLine()) != null){
-                lineSplit = null;
-                lineSplit = line.split(",");
-                user = lineSplit[0];
-                num_of_lines++;
-                if(user.equals("DELETED")){
-                    num_of_del++;
-                }
-            }
-        } catch (FileNotFoundException ex) {         
-        } catch (IOException ex) {                    
-        }
-        
-        if(file.length() == 0 || num_of_lines == num_of_del){
+        if(file.length() == 0){
             //if file is empty, writes data string into file. 
             write.write(data);
             write.newLine();
@@ -138,32 +115,8 @@ public class Owner extends User{
         //Adds to the "Customer.txt" file. 
         in = new FileWriter("Customer.txt", true);
         write = new BufferedWriter(in);
-       
-        String [] lineSplit;
-        String user;
-        int num_of_lines = 0;
-        int num_of_del = 0;
-       
-        try{
-            out = new FileReader("Book.txt");
-            BufferedReader read  = new BufferedReader(out);
-            
-            String line;
-            
-            while((line  = read.readLine()) != null){
-                lineSplit = null;
-                lineSplit = line.split(",");
-                user = lineSplit[0];
-                num_of_lines++;
-                if(user.equals("DELETED")){
-                    num_of_del++;
-                }
-            }
-        } catch (FileNotFoundException ex) {         
-        } catch (IOException ex) {                    
-        }
-        System.out.println(num_of_lines+" "+num_of_del);
-        if(file.length() == 0 || num_of_lines-2 == num_of_del){
+        
+        if(file.length() == 0){
         //If file is empty, writes data2 string into the file. 
         if(file.length() == 0){
  
