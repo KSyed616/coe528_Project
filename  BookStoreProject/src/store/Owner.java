@@ -115,15 +115,12 @@ public class Owner extends User{
         //Adds to the "Customer.txt" file. 
         in = new FileWriter("Customer.txt", true);
         write = new BufferedWriter(in);
-        
-        if(file.length() == 0){
         //If file is empty, writes data2 string into the file. 
         if(file.length() == 0){
  
             write.write(data2);
             write.newLine();
             write.close();
-        }
         }
     }
     
