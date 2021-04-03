@@ -160,6 +160,8 @@ public class CustomerFX extends Application{
                     }
                     
                 }
+                b1.getCheckedBooks().clear();
+                b1.getCheckedPrice().clear();
                 root.getChildren().clear();
                 try {
                     Cost(primaryStage);
@@ -178,6 +180,16 @@ public class CustomerFX extends Application{
                 }
                 totalPoints = 0;
                 totalPoints = totalPrice * 100;
+                Book b1 = new Book(name, price);
+                     
+                for (int i = 0; i < b1.getCheckedBooks().size(); i++) {
+                    try {
+                        c.Buy(""+b1.getCheckedBooks().get(i));
+                    } catch (IOException ex) {
+                        Logger.getLogger(CustomerFX.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }
                 root.getChildren().clear();
                 try {
                     PointCost(primaryStage);
@@ -252,6 +264,8 @@ public class CustomerFX extends Application{
         
         Pane root = new Pane();
         System.out.println(totalPoints +" "+c.getPoint());
+        Book b1 = new Book(name, price);
+        System.out.println(b1.getCheckedBooks());
         if(totalPoints<c.getPoint()){
             Button logout = new Button ("Logout");
             c.deductPoint(userName, totalPoints);
@@ -286,7 +300,30 @@ public class CustomerFX extends Application{
                 }
             });       
         }
+        //If points are not enough, adds the bought book back into the store.
         else{
+            Book b2 = new Book(name, price);
+            
+            FileWriter in; 
+            BufferedWriter write;
+                     
+            for (int i = 0; i < b2.getCheckedBooks().size(); i++) {
+                try {
+                    in = new FileWriter("Book.txt", true);
+                    write = new BufferedWriter(in);
+
+                    //adds object "Book" and its parameters "name" and "price" into the file. 
+                    write.write(""+b2.getCheckedBooks().get(i)+","+b2.getCheckedPrice().get(i));  
+                    write.newLine();
+                    write.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(CustomerFX.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+                    
+            }
+            b2.getCheckedBooks().clear();
+            b2.getCheckedPrice().clear();
+            
             Button logout = new Button ("Logout");
             Text noPoint = new Text(30, 50, "Not enough points to complete transaction");
 
