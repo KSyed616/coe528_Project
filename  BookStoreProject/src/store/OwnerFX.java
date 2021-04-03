@@ -287,7 +287,7 @@ public class OwnerFX extends Application {
         } catch (IOException ex) {
                     
         }
-        
+       
         HBox hbox = new HBox();
         hbox.getChildren().addAll(user, pass, add, delete, back);
         
@@ -299,10 +299,5 @@ public class OwnerFX extends Application {
         primaryStage.setScene(scene);
         
         primaryStage.show();    
-    }
-    
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
+    }  
 }

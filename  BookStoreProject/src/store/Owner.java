@@ -190,9 +190,4 @@ public class Owner extends User{
         LogInFX l = new LogInFX();
         l.start(primaryStage);
     }
-    
-    public static void main(String[] args) throws IOException{
-        Owner o = new Owner("ads", "ad");
-        o.initializeCust();
-    }
 }
