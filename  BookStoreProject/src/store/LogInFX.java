@@ -69,10 +69,10 @@ public class LogInFX extends Application {
             }
         });
         
-        Text scenetitle = new Text("Welcome");
-        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        Text scenetitle = new Text("Welcome to the Bookstore App");
+        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
         
-        root.add(scenetitle, 0, 0, 1, 1);
+        root.add(scenetitle, 0, 0, 2, 1);
         root.addRow(1, user, userField);
         root.addRow(2, pwd, pwdField);
         root.addRow(3, logIn);

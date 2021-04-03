@@ -96,7 +96,6 @@ public class OwnerFX extends Application {
         root.getChildren().add(books);
         root.getChildren().add(cust);
         root.getChildren().add(log);
-        root.setStyle("-fx-base: rgba(60, 60, 60, 255);");
         
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
