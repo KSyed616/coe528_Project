@@ -22,7 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class OwnerFX extends Application {
+public class OwnerFX extends Application{
     String name;
     double price;
     
@@ -253,7 +253,7 @@ public class OwnerFX extends Application {
                 userName = user.getText();
                 password = pass.getText();
                 Point = 0;
-                status = "S";
+                status = "Silver";
                 try {
                     o.addCust(userName, password, status, Point);
                 } catch (IOException ex) {

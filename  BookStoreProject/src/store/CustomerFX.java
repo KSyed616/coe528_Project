@@ -59,6 +59,7 @@ public class CustomerFX extends Application{
                 if(user.equals(userName) && pass.equals(password)){
                     status = lineSplit[2];
                     point = Double.parseDouble(lineSplit[3]);
+                    break; 
                 }
             }
         } catch (FileNotFoundException ex) {         
@@ -230,7 +231,6 @@ public class CustomerFX extends Application{
         Text totalCost = new Text(30, 50, "Total Cost: " + totalPrice + ".");
         totalCost.setFont(new Font(12));
         totalCost.setY(20);
-        System.out.println(totalPoints);
         
         if(c.getPoint()>=1000){
             c.setStatus("Gold");
@@ -306,7 +306,6 @@ public class CustomerFX extends Application{
         }
         //If points are not enough, adds the bought book back into the store.
         else{
-            System.out.println(totalPoints);
             Book b2 = new Book(name, price);
             
             FileWriter in; 

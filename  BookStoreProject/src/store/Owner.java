@@ -1,7 +1,6 @@
 package store;
 
 import java.io.*;
-import java.util.Scanner; 
 import javafx.stage.Stage;
 
 public class Owner extends User{
@@ -33,8 +32,6 @@ public class Owner extends User{
     FileWriter in2; 
     BufferedWriter write2;
     BufferedReader read2; 
-    
-    Scanner input = new Scanner(System.in);
     
     //constructor for Owner. 
     public Owner(String userName, String password){
