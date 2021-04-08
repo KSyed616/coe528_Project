@@ -23,34 +23,40 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class LogInFX extends Application {
+public class LogInFX extends Application{
     
     String userName;
     String password;
     
-    public LogInFX(){
-        
+    public LogInFX(){   
     }
+    
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage){
         GridPane root = new GridPane();
         root.setAlignment(Pos.CENTER);
         root.setHgap(10);
         root.setVgap(10);
         root.setPadding(new Insets(15, 25, 25, 25));
         
+        //where everything is located. 
         Scene scene = new Scene(root, 300, 250);
         
+        //creates button. 
         Button logIn = new Button();
         
+        //Labels for userName and password
         Label user = new Label("Username: ");
         Label pwd = new Label("Password: ");
         
-        TextField userField = new TextField();
-        
+        //where username and password for enterted. 
+        TextField userField = new TextField(); 
         PasswordField pwdField = new PasswordField();
         
+        //text that shows on login button. 
         logIn.setText("Login");
+        
+        //event handler for handle. Do something when Login is pressed. 
         logIn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -92,13 +98,16 @@ public class LogInFX extends Application {
         primaryStage.show();
         
     }
+    
     private void error(Stage primaryStage) {
         
         Button close = new Button("Close");
         VBox vbox = new VBox(new Text("The information you entered is not a part of our database"), close);
         
+        //Verticle box. 
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(15));
+        
         close.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -110,6 +119,7 @@ public class LogInFX extends Application {
         primaryStage.show();
         
     }
+    
     public static void main(String[] args) {
         launch(args);
     }

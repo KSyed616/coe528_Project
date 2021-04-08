@@ -40,6 +40,7 @@ public class OwnerFX extends Application{
         this.userName = userName;
         this.password = password;
     }
+    
     @Override
     public void start(Stage primaryStage) {
         Pane root = new Pane();
@@ -148,7 +149,7 @@ public class OwnerFX extends Application{
         
         bookTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
-        add.setOnAction(new EventHandler<ActionEvent>() {
+        add.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
                 name = bookName.getText();
@@ -205,6 +206,7 @@ public class OwnerFX extends Application{
                     
         }
         
+        //horizontal box 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(bookName, bookPrice, add, delete, back);
         

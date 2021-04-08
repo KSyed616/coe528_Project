@@ -3,7 +3,6 @@ package store;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,8 +37,7 @@ public class CustomerFX extends Application{
     
     CustomerFX(String userName, String password){
         this.userName = userName;
-        this.password = password;
-        
+        this.password = password;   
     }
     public void makeCust(Stage primaryStage, String user, String pass){
         String [] lineSplit;
@@ -165,6 +163,7 @@ public class CustomerFX extends Application{
                 b1.getCheckedBooks().clear();
                 b1.getCheckedPrice().clear();
                 root.getChildren().clear();
+                
                 try {
                     Cost(primaryStage);
                     totalPrice = 0;
@@ -267,9 +266,7 @@ public class CustomerFX extends Application{
     private void PointCost(Stage primaryStage) throws IOException{
         
         Pane root = new Pane();
-        System.out.println(totalPoints +" "+c.getPoint());
         Book b1 = new Book(name, price);
-        System.out.println(b1.getCheckedBooks());
         
         if(totalPoints<=c.getPoint()){
             Button logout = new Button ("Logout");
